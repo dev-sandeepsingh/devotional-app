@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Custom global styles */
+body {
+  background-color: white;
+  color: rgb(17, 24, 39);
+  font-family: system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(17, 24, 39);
+    color: rgb(243, 244, 246);
+  }
+}
