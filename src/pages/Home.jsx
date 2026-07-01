@@ -26,39 +26,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
       <Helmet>
         <title>Devotional App | Spiritual Chants & Mantras</title>
         <meta name="description" content="Explore devotional content in multiple languages." />
       </Helmet>
-
-      {/* Simplified Hero Section */}
-      <section className="bg-gradient-to-r from-orange-400 via-red-400 to-pink-400 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">🙏 Namaste</h1>
-          <p className="text-lg md:text-xl opacity-95 mb-8">
-            Welcome to your spiritual space. Explore devotional content in 8+ languages.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              to="/chalisa"
-              className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"
-            >
-              Start Exploring
-            </Link>
-            <Link
-              to="/donate"
-              className="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition"
-            >
-              Support Us
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Categories Section */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Explore by Category</h2>
+      <section className="w-full bg-white dark:bg-gray-950 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Explore by Category</h2>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat) => (
@@ -75,10 +51,11 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Featured Content */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-12 px-4">
+      <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Featured Content</h2>
@@ -111,8 +88,9 @@ export default function Home() {
       </section>
 
       {/* Why Us Section */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
+      <section className="w-full bg-white dark:bg-gray-950 py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
@@ -133,10 +111,11 @@ export default function Home() {
             <p className="text-gray-600 dark:text-gray-400">No ads, no subscriptions, pure devotion</p>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Quick Stats */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-12 px-4">
+      <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
@@ -160,23 +139,25 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-2xl p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Spiritual Journey</h2>
-          <p className="text-lg opacity-90 mb-8">
-            Thousands of devotees are already exploring their spirituality with us.
-          </p>
-          <Link
-            to="/chalisa"
-            className="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition"
-          >
-            Explore Now
-          </Link>
+      <section className="w-full bg-white dark:bg-gray-950 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-2xl p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Spiritual Journey</h2>
+            <p className="text-lg opacity-90 mb-8">
+              Thousands of devotees are already exploring their spirituality with us.
+            </p>
+            <Link
+              to="/chalisa"
+              className="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition"
+            >
+              Explore Now
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Languages Info */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-12 px-4">
+      <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">Available in 8+ Languages</h2>
           
@@ -191,8 +172,8 @@ export default function Home() {
       </section>
 
       {/* Footer CTA */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="text-center">
+      <section className="w-full bg-white dark:bg-gray-950 py-12 px-4">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Help Us Grow</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             Your support helps us maintain and expand this devotional platform

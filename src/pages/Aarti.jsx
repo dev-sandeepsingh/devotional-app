@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import HanumanImage from "../components/HanumanImage";
+import RelatedProducts from "../components/RelatedProducts";
 
 export default function Aarti() {
   const aartis = [
@@ -35,32 +37,48 @@ export default function Aarti() {
       </section>
 
       {/* Content Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {aartis.map((aarti, index) => (
-            <Link
-              key={index}
-              to={aarti.link}
-              className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
-            >
-              <div className="bg-gradient-to-r from-yellow-500 to-orange-600 p-6 text-white">
-                <div className="text-5xl mb-4">{aarti.icon}</div>
-                <h3 className="text-2xl font-bold group-hover:scale-105 transition-transform">{aarti.title}</h3>
-              </div>
-              
-              <div className="p-6">
-                <p className="text-gray-700 dark:text-gray-300 mb-4">{aarti.description}</p>
-                <div className="bg-yellow-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    <span className="font-semibold">Best Recited:</span> {aarti.occasion}
-                  </p>
-                </div>
-                <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-2 rounded-lg font-semibold hover:opacity-90 transition group-hover:translate-x-1">
-                  Read Aarti →
-                </button>
-              </div>
-            </Link>
-          ))}
+      <section className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content - Left Side */}
+          <div className="lg:col-span-2">
+            {/* Hanuman Image */}
+            <div className="mb-8">
+              <HanumanImage />
+            </div>
+
+            {/* Aartis Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {aartis.map((aarti, index) => (
+                <Link
+                  key={index}
+                  to={aarti.link}
+                  className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
+                >
+                  <div className="bg-gradient-to-r from-yellow-500 to-orange-600 p-6 text-white">
+                    <div className="text-5xl mb-4">{aarti.icon}</div>
+                    <h3 className="text-2xl font-bold group-hover:scale-105 transition-transform">{aarti.title}</h3>
+                  </div>
+                  
+                  <div className="p-6">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4">{aarti.description}</p>
+                    <div className="bg-yellow-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        <span className="font-semibold">Best Recited:</span> {aarti.occasion}
+                      </p>
+                    </div>
+                    <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-2 rounded-lg font-semibold hover:opacity-90 transition group-hover:translate-x-1">
+                      Read Aarti →
+                    </button>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Related Products - Right Side */}
+          <div className="lg:col-span-1">
+            <RelatedProducts />
+          </div>
         </div>
       </section>
 

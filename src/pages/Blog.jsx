@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import HanumanImage from "../components/HanumanImage";
+import RelatedProducts from "../components/RelatedProducts";
 
 export default function Blog() {
   const blogPosts = [
@@ -53,39 +55,55 @@ export default function Blog() {
       </section>
 
       {/* Blog Posts Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blogPosts.map((post, index) => (
-            <Link
-              key={index}
-              to={post.link}
-              className="group bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
-            >
-              <div className="bg-gradient-to-r from-green-500 to-teal-500 h-2"></div>
-              
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="text-4xl">{post.icon}</div>
-                  <div className="text-right">
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{post.date}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{post.readTime}</p>
+      <section className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content - Left Side */}
+          <div className="lg:col-span-2">
+            {/* Hanuman Image */}
+            <div className="mb-8">
+              <HanumanImage />
+            </div>
+
+            {/* Blog Posts Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {blogPosts.map((post, index) => (
+                <Link
+                  key={index}
+                  to={post.link}
+                  className="group bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
+                >
+                  <div className="bg-gradient-to-r from-green-500 to-teal-500 h-2"></div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-4xl">{post.icon}</div>
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{post.date}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{post.readTime}</p>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                      {post.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    
+                    <button className="inline-flex items-center text-green-600 dark:text-green-400 font-semibold hover:translate-x-1 transition">
+                      Read Article →
+                    </button>
                   </div>
-                </div>
-                
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
-                  {post.excerpt}
-                </p>
-                
-                <button className="inline-flex items-center text-green-600 dark:text-green-400 font-semibold hover:translate-x-1 transition">
-                  Read Article →
-                </button>
-              </div>
-            </Link>
-          ))}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Related Products - Right Side */}
+          <div className="lg:col-span-1">
+            <RelatedProducts />
+          </div>
         </div>
       </section>
 

@@ -2,14 +2,63 @@
 
 /* Custom global styles */
 body {
-  background-color: white;
-  color: rgb(17, 24, 39);
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: rgb(17, 24, 39);
-    color: rgb(243, 244, 246);
-  }
+html {
+  scroll-behavior: smooth;
 }
+
+/* Explicit dark mode CSS */
+html.dark {
+  background-color: rgb(3, 7, 30);
+  color: rgb(229, 231, 235);
+}
+
+html.dark main {
+  background-color: rgb(3, 7, 30);
+  color: rgb(229, 231, 235);
+}
+
+html.dark aside {
+  background-color: rgb(15, 23, 42);
+  border-color: rgb(55, 65, 81);
+  color: rgb(229, 231, 235);
+}
+
+html.dark aside a {
+  color: rgb(229, 231, 235);
+}
+
+html.dark aside a.active {
+  background-color: rgb(249, 115, 22);
+  color: rgb(255, 255, 255);
+}
+
+html.dark header {
+  background: linear-gradient(to right, rgb(124, 45, 18), rgb(127, 29, 29));
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: rgb(243, 244, 246);
+}
+
+html.dark p {
+  color: rgb(209, 213, 219);
+}
+
+html.dark footer {
+  background-color: rgb(17, 24, 39);
+  border-color: rgb(55, 65, 81);
+  color: rgb(229, 231, 235);
+}
+
+html.dark section {
+  background-color: rgb(3, 7, 30);
+}
+
+html.dark .grid > div {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(31, 41, 55);
+}
+

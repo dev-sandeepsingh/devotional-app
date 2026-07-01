@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import ContentActions from "../components/ContentActions";
 import ShareButtons from "../components/ShareButtons";
+import CollapsibleSection from "../components/CollapsibleSection";
 
 export default function ContentPage() {
   const text = `
@@ -34,21 +35,14 @@ export default function ContentPage() {
         </div>
 
         {/* Meaning & Explanation */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-3xl font-bold mb-6 dark:text-white flex items-center gap-3">
-            <span>📚</span>
-            Meaning & Explanation
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">This Chalisa praises Hanuman's strength, devotion, and service to Lord Rama. Each verse highlights different aspects of Hanuman's character and virtues, making it a comprehensive hymn that devotees recite for spiritual upliftment and protection.</p>
-        </section>
+        <CollapsibleSection icon="📚" title="Meaning & Explanation" defaultOpen={true}>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
+            This Chalisa praises Hanuman's strength, devotion, and service to Lord Rama. Each verse highlights different aspects of Hanuman's character and virtues, making it a comprehensive hymn that devotees recite for spiritual upliftment and protection.
+          </p>
+        </CollapsibleSection>
 
         {/* FAQ Section */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-3xl font-bold mb-6 dark:text-white flex items-center gap-3">
-            <span>❓</span>
-            Frequently Asked Questions
-          </h2>
-          
+        <CollapsibleSection icon="❓" title="Frequently Asked Questions" defaultOpen={false}>
           <div className="space-y-6">
             <div className="border-l-4 border-blue-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">
@@ -86,19 +80,15 @@ export default function ContentPage() {
               </p>
             </div>
           </div>
-        </section>
+        </CollapsibleSection>
 
         {/* Share Section */}
-        <section className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-8">
-          <h2 className="text-3xl font-bold mb-6 dark:text-white flex items-center gap-3">
-            <span>📤</span>
-            Share This Content
-          </h2>
+        <CollapsibleSection icon="📤" title="Share This Content" defaultOpen={false}>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             Spread the spiritual wisdom by sharing this sacred text with friends and family
           </p>
           <ShareButtons url={window.location.href} />
-        </section>
+        </CollapsibleSection>
       </div>
     </article>
   );

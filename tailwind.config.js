@@ -9,4 +9,7 @@ export default {
   },
   plugins: [],
   darkMode: 'class',
+  safelist: [
+    { pattern: /^dark:/ },
+  ],
 }
