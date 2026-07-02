@@ -3,37 +3,62 @@ import ContentActions from "../components/ContentActions";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
 
-export default function MantraDetailPage() {
-  const text = `
+const MANTRA_CONTENT = {
+  hindi: {
+    title: "Hanuman Mantra (Hindi)",
+    metaTitle: "Hanuman Mantra Hindi | Devotional",
+    metaDescription: "Powerful Hanuman mantras in Hindi for strength, courage, and spiritual growth.",
+    canonicalPath: "/hanuman-mantra-hindi",
+    subtitle: "Powerful mantras for strength, courage, and spiritual awakening",
+    text: `
     ॐ नमः शिवाय
     ॐ नमो भगवते वासुदेवाय
     ॐ श्रीं ह्रीं क्लीं
-    
+
     Sacred Hanuman Mantras...
-  `;
+  `,
+  },
+  english: {
+    title: "Hanuman Mantra (English)",
+    metaTitle: "Hanuman Mantra English | Devotional",
+    metaDescription: "English transliteration of powerful Hanuman mantras for strength, courage, and spiritual growth.",
+    canonicalPath: "/hanuman-mantra-english",
+    subtitle: "English transliteration of powerful mantras for strength, courage, and spiritual awakening",
+    text: `
+    Om Namah Shivaya
+    Om Namo Bhagavate Vasudevaya
+    Om Shreem Hreem Kleem
+
+    Sacred Hanuman Mantras (English transliteration placeholder)...
+  `,
+  },
+};
+
+export default function MantraDetailPage({ lang = "hindi" }) {
+  const content = MANTRA_CONTENT[lang] ?? MANTRA_CONTENT.hindi;
 
   return (
     <article className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>Hanuman Mantra | Devotional</title>
-        <meta name="description" content="Powerful Hanuman mantras for strength, courage, and spiritual growth." />
-        <link rel="canonical" href="https://yourdomain.com/hanuman-mantra" />
+        <title>{content.metaTitle}</title>
+        <meta name="description" content={content.metaDescription} />
+        <link rel="canonical" href={`https://yourdomain.com${content.canonicalPath}`} />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">✨ Hanuman Mantra</h1>
-          <p className="text-lg opacity-90">Powerful mantras for strength, courage, and spiritual awakening</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">✨ {content.title}</h1>
+          <p className="text-lg opacity-90">{content.subtitle}</p>
         </div>
 
         {/* Main Content */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
           <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-700 p-6 rounded-lg mb-6 font-serif text-gray-800 dark:text-gray-200 leading-relaxed overflow-auto">
-            {text}
+            {content.text}
           </pre>
 
-          <ContentActions text={text} />
+          <ContentActions text={content.text} />
         </div>
 
         {/* How to Recite */}

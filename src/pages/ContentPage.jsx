@@ -3,35 +3,58 @@ import ContentActions from "../components/ContentActions";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
 
-export default function ContentPage() {
-  const text = `
+const CHALISA_CONTENT = {
+  hindi: {
+    title: "Hanuman Chalisa (Hindi)",
+    metaTitle: "Hanuman Chalisa Hindi | Devotional",
+    metaDescription: "Read Hanuman Chalisa in Hindi with meaning and explanation.",
+    canonicalPath: "/hanuman-chalisa-hindi",
+    subtitle: "A devotional hymn dedicated to Lord Hanuman",
+    text: `
     श्री हनुमान चालीसा
     ...
-    (sample devotional text here)
-  `;
+    (sample devotional text here — replace with the verified Hindi verses)
+  `,
+  },
+  english: {
+    title: "Hanuman Chalisa (English)",
+    metaTitle: "Hanuman Chalisa English | Devotional",
+    metaDescription: "Read the English translation of Hanuman Chalisa with meaning and explanation.",
+    canonicalPath: "/hanuman-chalisa-english",
+    subtitle: "English translation of the sacred hymn dedicated to Lord Hanuman",
+    text: `
+    Shri Hanuman Chalisa (English Translation)
+    ...
+    (sample English translation placeholder — replace with the verified translation)
+  `,
+  },
+};
+
+export default function ContentPage({ lang = "hindi" }) {
+  const content = CHALISA_CONTENT[lang] ?? CHALISA_CONTENT.hindi;
 
   return (
     <article className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>Hanuman Chalisa Hindi | Devotional</title>
-        <meta name="description" content="Read Hanuman Chalisa in Hindi with meaning and explanation." />
-        <link rel="canonical" href="https://yourdomain.com/hanuman-chalisa-hindi" />
+        <title>{content.metaTitle}</title>
+        <meta name="description" content={content.metaDescription} />
+        <link rel="canonical" href={`https://yourdomain.com${content.canonicalPath}`} />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">🙏 Hanuman Chalisa (Hindi)</h1>
-          <p className="text-lg opacity-90">A devotional hymn dedicated to Lord Hanuman</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">🙏 {content.title}</h1>
+          <p className="text-lg opacity-90">{content.subtitle}</p>
         </div>
 
         {/* Main Content */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
           <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-700 p-6 rounded-lg mb-6 font-serif text-gray-800 dark:text-gray-200 leading-relaxed overflow-auto">
-            {text}
+            {content.text}
           </pre>
 
-          <ContentActions text={text} />
+          <ContentActions text={content.text} />
         </div>
 
         {/* Meaning & Explanation */}

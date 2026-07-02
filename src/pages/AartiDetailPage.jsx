@@ -3,36 +3,60 @@ import ContentActions from "../components/ContentActions";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
 
-export default function AartiDetailPage() {
-  const text = `
+const AARTI_CONTENT = {
+  hindi: {
+    title: "Hanuman Aarti (Hindi)",
+    metaTitle: "Hanuman Aarti Hindi | Devotional",
+    metaDescription: "Sacred Hanuman Aarti in Hindi with meaning and instructions for worship.",
+    canonicalPath: "/hanuman-aarti-hindi",
+    subtitle: "Sacred hymn performed as an offering during worship ceremonies",
+    text: `
     आरती कीजै हनुमान लाल की
     जय भीम भीम भीम
-    
+
     Hanuman Aarti...
-  `;
+  `,
+  },
+  english: {
+    title: "Hanuman Aarti (English)",
+    metaTitle: "Hanuman Aarti English | Devotional",
+    metaDescription: "English translation of the sacred Hanuman Aarti with meaning and instructions for worship.",
+    canonicalPath: "/hanuman-aarti-english",
+    subtitle: "English translation of the sacred hymn performed as an offering during worship ceremonies",
+    text: `
+    Aarti kije Hanuman Lala ki
+    Dushta dalan Raghunath kala ki
+
+    Hanuman Aarti (English translation placeholder)...
+  `,
+  },
+};
+
+export default function AartiDetailPage({ lang = "hindi" }) {
+  const content = AARTI_CONTENT[lang] ?? AARTI_CONTENT.hindi;
 
   return (
     <article className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>Hanuman Aarti | Devotional</title>
-        <meta name="description" content="Sacred Hanuman Aarti with meaning and instructions for worship." />
-        <link rel="canonical" href="https://yourdomain.com/hanuman-aarti" />
+        <title>{content.metaTitle}</title>
+        <meta name="description" content={content.metaDescription} />
+        <link rel="canonical" href={`https://yourdomain.com${content.canonicalPath}`} />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">🎵 Hanuman Aarti</h1>
-          <p className="text-lg opacity-90">Sacred hymn performed as an offering during worship ceremonies</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">🎵 {content.title}</h1>
+          <p className="text-lg opacity-90">{content.subtitle}</p>
         </div>
 
         {/* Main Content */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
           <pre className="whitespace-pre-wrap bg-gray-50 dark:bg-gray-700 p-6 rounded-lg mb-6 font-serif text-gray-800 dark:text-gray-200 leading-relaxed overflow-auto">
-            {text}
+            {content.text}
           </pre>
 
-          <ContentActions text={text} />
+          <ContentActions text={content.text} />
         </div>
 
         {/* What is Aarti */}
