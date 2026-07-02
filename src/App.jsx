@@ -12,6 +12,8 @@ import Mantra from "./pages/Mantra";
 import Aarti from "./pages/Aarti";
 import Blog from "./pages/Blog";
 import Donate from "./pages/Donate";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import ContentPage from "./pages/ContentPage";
 import MantraDetailPage from "./pages/MantraDetailPage";
 import AartiDetailPage from "./pages/AartiDetailPage";
@@ -72,6 +74,8 @@ export default function App() {
                 <Route path="/aarti" element={<Aarti />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/donate" element={<Donate />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 {/* Chalisa Detail Pages */}
                 <Route path="/hanuman-chalisa-hindi" element={<ContentPage lang="hindi" />} />
                 <Route path="/hanuman-chalisa-english" element={<ContentPage lang="english" />} />

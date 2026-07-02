@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 so `dark:` utilities respond to the
+   `.dark` class toggled on <html> (by DarkModeToggle), not the OS prefers-color-scheme.
+   Without this, dark: utilities were inert against the class and cards rendered light. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Custom global styles */
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -9,56 +14,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Explicit dark mode CSS */
+/* Root-level fallback colors for dark mode. Component-level `dark:` utility classes
+   now handle everything else consistently, so the previous broad element overrides
+   (html.dark section/main/aside/.grid > div, etc.) have been removed — they fought the
+   utilities and forced some cards to render white/unreadable in dark mode. */
 html.dark {
   background-color: rgb(3, 7, 30);
   color: rgb(229, 231, 235);
 }
-
-html.dark main {
-  background-color: rgb(3, 7, 30);
-  color: rgb(229, 231, 235);
-}
-
-html.dark aside {
-  background-color: rgb(15, 23, 42);
-  border-color: rgb(55, 65, 81);
-  color: rgb(229, 231, 235);
-}
-
-html.dark aside a {
-  color: rgb(229, 231, 235);
-}
-
-html.dark aside a.active {
-  background-color: rgb(249, 115, 22);
-  color: rgb(255, 255, 255);
-}
-
-html.dark header {
-  background: linear-gradient(to right, rgb(124, 45, 18), rgb(127, 29, 29));
-}
-
-html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
-  color: rgb(243, 244, 246);
-}
-
-html.dark p {
-  color: rgb(209, 213, 219);
-}
-
-html.dark footer {
-  background-color: rgb(17, 24, 39);
-  border-color: rgb(55, 65, 81);
-  color: rgb(229, 231, 235);
-}
-
-html.dark section {
-  background-color: rgb(3, 7, 30);
-}
-
-html.dark .grid > div {
-  background-color: rgb(255, 255, 255);
-  border-color: rgb(31, 41, 55);
-}
-
