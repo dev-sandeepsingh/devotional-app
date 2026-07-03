@@ -1,7 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import HanumanImage from "../components/HanumanImage";
-import RelatedProducts from "../components/RelatedProducts";
 import { blogsApi } from "../admin/api";
 
 // A small set of icons + gradient accents so the API-driven cards (which carry
@@ -79,92 +77,77 @@ export default function Blog() {
 
       {/* Blog Posts Section */}
       <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content - Left Side */}
-          <div className="lg:col-span-2">
-            {/* Hanuman Image */}
-            <div className="mb-8">
-              <HanumanImage />
-            </div>
-
-            {/* States: loading / error / empty / list */}
-            {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden animate-pulse">
-                    <div className="h-2 bg-gray-200 dark:bg-gray-600" />
-                    <div className="p-6 space-y-4">
-                      <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-600" />
-                      <div className="h-5 w-3/4 rounded bg-gray-200 dark:bg-gray-600" />
-                      <div className="h-4 w-full rounded bg-gray-200 dark:bg-gray-600" />
-                      <div className="h-4 w-5/6 rounded bg-gray-200 dark:bg-gray-600" />
-                    </div>
-                  </div>
-                ))}
+        {/* States: loading / error / empty / list */}
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden animate-pulse">
+                <div className="h-2 bg-gray-200 dark:bg-gray-600" />
+                <div className="p-6 space-y-4">
+                  <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-600" />
+                  <div className="h-5 w-3/4 rounded bg-gray-200 dark:bg-gray-600" />
+                  <div className="h-4 w-full rounded bg-gray-200 dark:bg-gray-600" />
+                  <div className="h-4 w-5/6 rounded bg-gray-200 dark:bg-gray-600" />
+                </div>
               </div>
-            ) : error ? (
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 rounded-xl p-8 text-center">
-                <div className="text-4xl mb-3" aria-hidden="true">⚠️</div>
-                <p className="font-medium mb-4">{error}</p>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 rounded-xl p-8 text-center">
+            <div className="text-4xl mb-3" aria-hidden="true">⚠️</div>
+            <p className="font-medium mb-4">{error}</p>
+            <button
+              onClick={retry}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : blogs.length === 0 ? (
+          <div className="bg-white dark:bg-gray-700 rounded-xl shadow-md p-12 text-center">
+            <div className="text-5xl mb-4" aria-hidden="true">📝</div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No articles yet</h3>
+            <p className="text-gray-600 dark:text-gray-300">Check back soon — new devotional insights are on the way.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {blogs.map((post, index) => {
+              const accent = accentFor(index);
+              return (
                 <button
-                  onClick={retry}
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
+                  key={post.id}
+                  type="button"
+                  onClick={() => setActive(post)}
+                  className="group flex flex-col text-left bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
                 >
-                  Try Again
-                </button>
-              </div>
-            ) : blogs.length === 0 ? (
-              <div className="bg-white dark:bg-gray-700 rounded-xl shadow-md p-12 text-center">
-                <div className="text-5xl mb-4" aria-hidden="true">📝</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No articles yet</h3>
-                <p className="text-gray-600 dark:text-gray-300">Check back soon — new devotional insights are on the way.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {blogs.map((post, index) => {
-                  const accent = accentFor(index);
-                  return (
-                    <button
-                      key={post.id}
-                      type="button"
-                      onClick={() => setActive(post)}
-                      className="group text-left bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
-                    >
-                      <div className={`bg-gradient-to-r ${accent.bar} h-2`} />
+                  <div className={`bg-gradient-to-r ${accent.bar} h-2`} />
 
-                      <div className="p-6">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="text-4xl" aria-hidden="true">{accent.icon}</div>
-                          <div className="text-right">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">{readTime(post.description)}</p>
-                          </div>
-                        </div>
-
-                        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors line-clamp-2">
-                          {post.title}
-                        </h3>
-
-                        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                          {post.description}
-                        </p>
-
-                        <span className="inline-flex items-center text-green-600 dark:text-green-400 font-semibold group-hover:translate-x-1 transition">
-                          Read Article →
-                        </span>
+                  <div className="flex flex-col flex-1 p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-4xl" aria-hidden="true">{accent.icon}</div>
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{formatDate(post.createdAt)}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{readTime(post.description)}</p>
                       </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                    </div>
 
-          {/* Related Products - Right Side */}
-          <div className="lg:col-span-1">
-            <RelatedProducts />
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                      {post.description}
+                    </p>
+
+                    <span className="mt-auto inline-flex items-center text-green-600 dark:text-green-400 font-semibold group-hover:translate-x-1 transition">
+                      Read Article →
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
-        </div>
+        )}
       </section>
 
       {/* Newsletter Section */}
