@@ -32,7 +32,13 @@ const Header = memo(function Header({ onMenuToggle }) {
             </Link>
           </nav>
           
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-3 sm:gap-4 items-center">
+            <Link
+              to="/donate"
+              className="md:hidden bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-semibold hover:bg-orange-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Donate
+            </Link>
             <LanguageSwitcher />
             <DarkModeToggle />
           </div>
