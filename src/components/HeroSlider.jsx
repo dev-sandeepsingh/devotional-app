@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ImageWithFallback from "./ImageWithFallback";
 
 const SLIDES = [
   { image: "/assets/hanuman1.png", title: "जय श्री राम", subtitle: "भक्ति से ही मुक्ति मिलती है" },
@@ -34,10 +35,11 @@ export default function HeroSlider() {
               src={slide.image}
               alt=""
               aria-hidden="true"
+              onError={(e) => { e.currentTarget.style.visibility = "hidden"; }}
               className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl brightness-75"
             />
             {/* The complete image, contained and centered */}
-            <img src={slide.image} alt={slide.title} className="relative w-full h-full object-contain" />
+            <ImageWithFallback src={slide.image} alt={slide.title} className="relative w-full h-full object-contain" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
             <div className="absolute bottom-8 left-6 right-6 text-white">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold drop-shadow-lg">{slide.title}</h2>

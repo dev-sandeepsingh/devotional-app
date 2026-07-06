@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import HeroSlider from "../components/HeroSlider";
 import QuickAccess from "../components/QuickAccess";
+import ImageWithFallback from "../components/ImageWithFallback";
 
 export default function Home() {
   const categories = [
@@ -96,7 +97,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 items-center">
-              <img
+              <ImageWithFallback
                 src="/assets/hanuman.png"
                 alt="Hanuman Chalisa"
                 className="w-20 h-20 rounded-xl object-cover flex-shrink-0 bg-orange-100 dark:bg-gray-700"
