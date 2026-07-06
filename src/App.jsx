@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import UserShell from "./UserShell";
 
 // User-facing pages
@@ -75,6 +75,9 @@ export default function App() {
           <Route path="/blog/mantra-meditation-benefits" element={<BlogDetailPage slug="mantra-meditation-benefits" />} />
           <Route path="/blog/daily-devotional-guide" element={<BlogDetailPage slug="daily-devotional-guide" />} />
         </Route>
+
+        {/* Unknown route → redirect to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
