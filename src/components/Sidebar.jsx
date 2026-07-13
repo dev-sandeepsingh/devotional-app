@@ -17,7 +17,7 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
   ];
 
   return (
-    <aside className={`fixed lg:sticky lg:self-start lg:translate-x-0 top-20 left-0 h-[calc(100vh-80px)] w-64 ${
+    <aside className={`fixed lg:sticky lg:self-start lg:translate-x-0 top-14 left-0 h-[calc(100vh-56px)] w-64 ${
       collapsed ? "lg:w-20" : "lg:w-64"
     } bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-700 flex flex-col transition-[transform,width] duration-300 z-40 ${
       isOpen ? 'translate-x-0' : '-translate-x-full'

@@ -7,7 +7,7 @@ const Header = memo(function Header({ onMenuToggle }) {
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-950 dark:via-red-900 dark:to-red-950 shadow-lg border-b border-transparent dark:border-orange-400/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 gap-2">
+        <div className="flex justify-between items-center h-14 gap-2">
           <button
             onClick={onMenuToggle}
             className="lg:hidden p-2 rounded-lg hover:bg-red-700 dark:hover:bg-red-900 transition-colors focus:outline-none focus:ring-2 focus:ring-white flex-shrink-0"
@@ -18,7 +18,7 @@ const Header = memo(function Header({ onMenuToggle }) {
             </svg>
           </button>
           
-          <Link to="/" className="text-xl sm:text-2xl lg:text-3xl font-bold text-white hover:text-orange-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600 rounded px-1 sm:px-2 min-w-0 truncate whitespace-nowrap">
+          <Link to="/" className="text-lg sm:text-xl lg:text-2xl font-bold text-white hover:text-orange-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600 rounded px-1 sm:px-2 min-w-0 truncate whitespace-nowrap">
             🙏 Devotional
           </Link>
           
