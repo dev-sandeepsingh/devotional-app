@@ -29,10 +29,10 @@ export default function Aarti() {
       </Helmet>
 
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-12 px-4">
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">🎵 Aartis</h1>
-          <p className="text-lg opacity-90">Traditional devotional songs performed during worship ceremonies</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">🎵 Aartis</h1>
+          <p className="text-base opacity-90">Traditional devotional songs performed during worship ceremonies</p>
         </div>
       </section>
 
@@ -54,19 +54,19 @@ export default function Aarti() {
                   to={aarti.link}
                   className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
                 >
-                  <div className="bg-gradient-to-r from-yellow-500 to-orange-600 p-6 text-white">
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white">
                     <div className="text-5xl mb-4">{aarti.icon}</div>
                     <h3 className="text-2xl font-bold group-hover:scale-105 transition-transform">{aarti.title}</h3>
                   </div>
                   
                   <div className="p-6">
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{aarti.description}</p>
-                    <div className="bg-yellow-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
+                    <div className="bg-orange-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
                       <p className="text-sm text-gray-600 dark:text-gray-300">
                         <span className="font-semibold">Best Recited:</span> {aarti.occasion}
                       </p>
                     </div>
-                    <button className="w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-white py-2 rounded-lg font-semibold hover:opacity-90 transition group-hover:translate-x-1">
+                    <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 rounded-lg font-semibold hover:opacity-90 transition group-hover:translate-x-1">
                       Read Aarti →
                     </button>
                   </div>

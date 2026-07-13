@@ -6,10 +6,10 @@ import ImageWithFallback from "../components/ImageWithFallback";
 
 export default function Home() {
   const categories = [
-    { id: "chalisa", name: "Chalisas", icon: "📿", link: "/chalisa", description: "Devotional hymns", color: "blue", iconBg: "bg-blue-100 dark:bg-blue-900/40" },
-    { id: "mantra", name: "Mantras", icon: "✨", link: "/mantra", description: "Sacred chants", color: "purple", iconBg: "bg-purple-100 dark:bg-purple-900/40" },
-    { id: "aarti", name: "Aartis", icon: "🎵", link: "/aarti", description: "Worship songs", color: "pink", iconBg: "bg-pink-100 dark:bg-pink-900/40" },
-    { id: "blog", name: "Blog", icon: "📖", link: "/blog", description: "Spiritual articles", color: "green", iconBg: "bg-green-100 dark:bg-green-900/40" }
+    { id: "chalisa", name: "Chalisas", icon: "📿", link: "/chalisa", description: "Devotional hymns", color: "amber", iconBg: "bg-amber-100 dark:bg-amber-900/40" },
+    { id: "mantra", name: "Mantras", icon: "✨", link: "/mantra", description: "Sacred chants", color: "orange", iconBg: "bg-orange-100 dark:bg-orange-900/40" },
+    { id: "aarti", name: "Aartis", icon: "🎵", link: "/aarti", description: "Worship songs", color: "rose", iconBg: "bg-rose-100 dark:bg-rose-900/40" },
+    { id: "blog", name: "Blog", icon: "📖", link: "/blog", description: "Spiritual articles", color: "red", iconBg: "bg-red-100 dark:bg-red-900/40" }
   ];
 
   // Placeholder trending data — the app currently only has Hanuman content and no
@@ -27,10 +27,10 @@ export default function Home() {
   ];
 
   const colorMap = {
-    blue: "from-blue-500 to-blue-600",
-    purple: "from-purple-500 to-purple-600",
-    pink: "from-pink-500 to-pink-600",
-    green: "from-green-500 to-green-600"
+    amber: "from-amber-500 to-orange-500",
+    orange: "from-orange-500 to-red-500",
+    rose: "from-rose-500 to-red-500",
+    red: "from-red-500 to-rose-600"
   };
 
   return (
@@ -217,15 +217,15 @@ export default function Home() {
               <p className="text-gray-600 dark:text-gray-400">Content Items</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-purple-500 mb-2">50K+</div>
+              <div className="text-4xl font-bold text-red-500 mb-2">50K+</div>
               <p className="text-gray-600 dark:text-gray-400">Daily Visitors</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-pink-500 mb-2">200K+</div>
+              <div className="text-4xl font-bold text-amber-600 mb-2">200K+</div>
               <p className="text-gray-600 dark:text-gray-400">Monthly Users</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-green-500 mb-2">98%</div>
+              <div className="text-4xl font-bold text-rose-500 mb-2">98%</div>
               <p className="text-gray-600 dark:text-gray-400">User Rating</p>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="w-full bg-white dark:bg-gray-950 py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-2xl p-12 text-center">
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Spiritual Journey</h2>
             <p className="text-lg opacity-90 mb-8">
               Thousands of devotees are already exploring their spirituality with us.

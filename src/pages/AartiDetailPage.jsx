@@ -45,8 +45,8 @@ export default function AartiDetailPage({ lang = "hindi" }) {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">🎵 {content.title}</h1>
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-6 mb-8 shadow-lg">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">🎵 {content.title}</h1>
           <p className="text-lg opacity-90">{content.subtitle}</p>
         </div>
 
@@ -132,28 +132,28 @@ export default function AartiDetailPage({ lang = "hindi" }) {
         {/* FAQ */}
         <CollapsibleSection icon="❓" title="Frequently Asked Questions" defaultOpen={false}>
           <div className="space-y-6">
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-amber-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: Which hand should I use for aarti?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: Traditionally, the right hand is used for offering aarti as it is considered the giving hand in Hindu culture.
               </p>
             </div>
 
-            <div className="border-l-4 border-purple-500 pl-4">
+            <div className="border-l-4 border-orange-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: Can women perform aarti?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: Yes, absolutely! Both men and women can and should perform aarti. It is a devotional act open to all.
               </p>
             </div>
 
-            <div className="border-l-4 border-pink-500 pl-4">
+            <div className="border-l-4 border-red-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: How long should aarti last?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: There's no fixed duration. Typically, aarti lasts 3-5 minutes, but you can perform it as long as you feel connected.
               </p>
             </div>
 
-            <div className="border-l-4 border-green-500 pl-4">
+            <div className="border-l-4 border-rose-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: Is aarti performed only in temples?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: No, aarti is commonly performed at home in front of deity idols. It can be done anywhere with sincere devotion.

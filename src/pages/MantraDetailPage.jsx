@@ -47,8 +47,8 @@ export default function MantraDetailPage({ lang = "hindi" }) {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">✨ {content.title}</h1>
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-6 mb-8 shadow-lg">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">✨ {content.title}</h1>
           <p className="text-lg opacity-90">{content.subtitle}</p>
         </div>
 
@@ -136,28 +136,28 @@ export default function MantraDetailPage({ lang = "hindi" }) {
         {/* FAQ */}
         <CollapsibleSection icon="❓" title="Frequently Asked Questions" defaultOpen={false}>
           <div className="space-y-6">
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-amber-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: How many times should I chant the mantra?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: Traditionally, mantras are chanted 108 times. However, 40 recitations or even once with sincere devotion is beneficial.
               </p>
             </div>
 
-            <div className="border-l-4 border-purple-500 pl-4">
+            <div className="border-l-4 border-orange-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: When is the best time to chant?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: Early morning (Brahma Muhurta) and evening are ideal times. However, you can chant anytime with sincere devotion.
               </p>
             </div>
 
-            <div className="border-l-4 border-pink-500 pl-4">
+            <div className="border-l-4 border-red-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: Do I need a prayer bead (mala)?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: A mala with 108 beads helps count recitations, but it's not mandatory. Sincere devotion is more important than external tools.
               </p>
             </div>
 
-            <div className="border-l-4 border-green-500 pl-4">
+            <div className="border-l-4 border-rose-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">Q: Can I chant silently?</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 A: Yes, you can chant silently in your mind. This is called "Japa" and is equally powerful as audible chanting.

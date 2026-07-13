@@ -28,10 +28,10 @@ export default function Chalisa() {
         <meta name="description" content="Explore Chalisas in multiple languages with meaning and explanation." />
       </Helmet>
 
-      <header className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12 px-4">
+      <header className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">📿 Chalisas</h1>
-          <p className="text-lg opacity-90">Browse popular Chalisas in multiple languages with meanings and explanations</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">📿 Chalisas</h1>
+          <p className="text-base opacity-90">Browse popular Chalisas in multiple languages with meanings and explanations</p>
         </div>
       </header>
 
@@ -42,19 +42,19 @@ export default function Chalisa() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {chalisas.map((chalisa, index) => (
                 <article key={index} className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
-                  <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 text-white">
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white">
                     <div className="text-5xl mb-4" aria-hidden="true">{chalisa.icon}</div>
                     <h2 className="text-2xl font-bold group-hover:scale-105 transition-transform">{chalisa.title}</h2>
                   </div>
                   
                   <div className="p-6">
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{chalisa.description}</p>
-                    <div className="bg-purple-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
+                    <div className="bg-orange-50 dark:bg-gray-600 p-4 rounded-lg mb-4">
                       <p className="text-sm text-gray-600 dark:text-gray-300">
                         <strong>Available:</strong> {chalisa.languages}
                       </p>
                     </div>
-                    <Link to={chalisa.link} className="inline-block w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition text-center group-hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    <Link to={chalisa.link} className="inline-block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition text-center group-hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-orange-400">
                       Read Now →
                     </Link>
                   </div>

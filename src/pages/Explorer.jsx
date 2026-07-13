@@ -15,7 +15,7 @@ export default function Explorer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 9 }).map((_, i) => (
             <div key={i} className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-800">
-              <div className="h-32 bg-gradient-to-r from-orange-400 to-red-400 rounded-lg mb-4"></div>
+              <div className="h-32 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-4"></div>
               <h3 className="font-bold text-gray-800 dark:text-white mb-2">Item {i + 1}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">Browse devotional content</p>
             </div>

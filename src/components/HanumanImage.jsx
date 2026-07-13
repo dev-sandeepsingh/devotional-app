@@ -1,19 +1,32 @@
 import ImageWithFallback from "./ImageWithFallback";
 
+// Compact medallion-style portrait of Lord Hanuman shown above content lists
+// (Chalisa, Mantra, Aarti pages).
 export default function HanumanImage() {
   return (
-    <div className="flex justify-center items-center bg-gradient-to-b from-orange-100 to-yellow-50 dark:from-orange-900 dark:to-yellow-900 rounded-lg p-3 shadow-md overflow-hidden border-2 border-orange-300 dark:border-orange-700">
-      <div className="relative w-full max-w-xs">
-        <ImageWithFallback
-          src="/assets/hanuman.png"
-          alt="Lord Hanuman - Divine Avatar"
-          className="w-full h-auto min-h-[12rem] object-cover rounded-md shadow-md hover:shadow-lg transition-shadow duration-300"
+    <div className="flex justify-center py-4">
+      <div className="relative">
+        {/* Soft glowing aura */}
+        <div
+          className="absolute -inset-3 rounded-full bg-gradient-to-r from-orange-400/40 via-amber-300/40 to-red-400/40 blur-xl animate-pulse"
+          aria-hidden="true"
         />
-        {/* Decorative overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 via-transparent to-transparent rounded-md pointer-events-none"></div>
 
-        {/* Spiritual aura effect */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 to-yellow-400/20 rounded-md blur-lg -z-10 animate-pulse"></div>
+        {/* Gradient ring around the portrait */}
+        <div className="relative rounded-full p-1 bg-gradient-to-tr from-orange-500 via-amber-400 to-red-500 shadow-lg">
+          <div className="rounded-full p-1 bg-white dark:bg-gray-900">
+            <ImageWithFallback
+              src="/assets/hanuman.png"
+              alt="Lord Hanuman - Divine Avatar"
+              className="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover object-top hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+
+        {/* Badge */}
+        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+          🚩 जय श्री राम
+        </span>
       </div>
     </div>
   );

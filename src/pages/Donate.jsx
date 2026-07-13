@@ -9,10 +9,10 @@ export default function Donate() {
       </Helmet>
 
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-red-600 to-pink-600 text-white py-12 px-4">
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">❤️ Support Our Mission</h1>
-          <p className="text-lg opacity-90">Help us maintain and expand this devotional platform for everyone</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">❤️ Support Our Mission</h1>
+          <p className="text-base opacity-90">Help us maintain and expand this devotional platform for everyone</p>
         </div>
       </section>
 
@@ -53,7 +53,7 @@ export default function Donate() {
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-pink-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-8 shadow-lg">
+          <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-8 shadow-lg">
             <h3 className="text-2xl font-bold mb-6 dark:text-white">Every Donation Helps</h3>
             <div className="space-y-4 mb-8">
               <div className="flex justify-between items-center">
@@ -91,7 +91,7 @@ export default function Donate() {
               <div className="text-5xl mb-4">📱</div>
               <h3 className="text-2xl font-bold mb-2 dark:text-white">UPI Payment</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">Quick and secure payment via UPI</p>
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
                 Pay via UPI
               </div>
             </button>
@@ -103,7 +103,7 @@ export default function Donate() {
               <div className="text-5xl mb-4">💳</div>
               <h3 className="text-2xl font-bold mb-2 dark:text-white">Card & Razorpay</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">Accept all major payment methods</p>
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
+              <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
                 Pay via Razorpay
               </div>
             </button>
@@ -111,7 +111,7 @@ export default function Donate() {
         </section>
 
         {/* Testimonials */}
-        <section className="bg-gradient-to-r from-red-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-8">
+        <section className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-8">
           <h2 className="text-2xl font-bold mb-8 text-center dark:text-white">Thank You Donors!</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

@@ -31,10 +31,10 @@ export default function Contact() {
       </Helmet>
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 text-white py-16 px-4">
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 text-white py-8 px-4">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">✉️ Contact Us</h1>
-          <p className="text-lg opacity-90 max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">✉️ Contact Us</h1>
+          <p className="text-base opacity-90 max-w-2xl">
             Questions, suggestions, or a kind word — we'd love to hear from you.
           </p>
         </div>

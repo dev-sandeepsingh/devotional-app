@@ -16,10 +16,10 @@ export default function CategoryPage({ category }) {
       </Helmet>
 
       {/* Header Section */}
-      <section className={`bg-gradient-to-r ${config.gradient} text-white py-12 px-4`}>
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">{config.icon} {config.title}</h1>
-          <p className="text-lg opacity-90">{config.tagline}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">{config.icon} {config.title}</h1>
+          <p className="text-base opacity-90">{config.tagline}</p>
         </div>
       </section>
 
@@ -34,14 +34,14 @@ export default function CategoryPage({ category }) {
                   key={index}
                   className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1"
                 >
-                  <div className={`bg-gradient-to-r ${config.gradient} p-6 text-white`}>
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white">
                     <div className="text-5xl mb-4">{item.icon}</div>
                     <h3 className="text-2xl font-bold group-hover:scale-105 transition-transform">{item.title}</h3>
                   </div>
 
                   <div className="p-6">
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{item.description}</p>
-                    <div className={`${config.metaBg} dark:bg-gray-600 p-4 rounded-lg`}>
+                    <div className="bg-orange-50 dark:bg-gray-600 p-4 rounded-lg">
                       <p className="text-sm text-gray-600 dark:text-gray-300">
                         <span className="font-semibold">{config.metaLabel}:</span> {item.meta}
                       </p>

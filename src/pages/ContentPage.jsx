@@ -35,10 +35,10 @@ export default function ContentPage({ lang = "hindi" }) {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header with on-page language dropdown */}
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl p-8 mb-8 shadow-lg">
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-6 mb-8 shadow-lg">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="min-w-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">🙏 {t("title")}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mb-3">🙏 {t("title")}</h1>
               <p className="text-lg opacity-90">{t("intro")}</p>
             </div>
 
@@ -76,11 +76,11 @@ export default function ContentPage({ lang = "hindi" }) {
         {/* FAQ Section */}
         <CollapsibleSection icon="❓" title="Frequently Asked Questions" defaultOpen={false}>
           <div className="space-y-6">
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-orange-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">{t("faq.q1")}</h3>
               <p className="text-gray-700 dark:text-gray-300">{t("faq.a1")}</p>
             </div>
-            <div className="border-l-4 border-purple-500 pl-4">
+            <div className="border-l-4 border-red-500 pl-4">
               <h3 className="text-lg font-bold dark:text-white mb-2">{t("faq.q2")}</h3>
               <p className="text-gray-700 dark:text-gray-300">{t("faq.a2")}</p>
             </div>

@@ -6,9 +6,7 @@ const categoryContent = {
     title: "Stotras",
     icon: "📜",
     tagline: "Sacred hymns of praise composed in honour of the divine",
-    gradient: "from-orange-500 to-red-600",
     metaLabel: "Dedicated To",
-    metaBg: "bg-orange-50",
     items: [
       {
         title: "Sankat Mochan Hanuman Stotra",
@@ -65,9 +63,7 @@ const categoryContent = {
     title: "Ashtakams",
     icon: "🙏",
     tagline: "Eight-versed hymns capturing the essence of divine glory",
-    gradient: "from-purple-500 to-indigo-600",
     metaLabel: "Dedicated To",
-    metaBg: "bg-purple-50",
     items: [
       {
         title: "Lingashtakam",
@@ -124,9 +120,7 @@ const categoryContent = {
     title: "Sahasranamas",
     icon: "📚",
     tagline: "The thousand sacred names of the divine",
-    gradient: "from-blue-500 to-cyan-600",
     metaLabel: "Dedicated To",
-    metaBg: "bg-blue-50",
     items: [
       {
         title: "Vishnu Sahasranama",
@@ -183,9 +177,7 @@ const categoryContent = {
     title: "Vrat Kathas",
     icon: "🕉️",
     tagline: "Sacred stories recited during fasts and religious observances",
-    gradient: "from-emerald-500 to-teal-600",
     metaLabel: "Observed On",
-    metaBg: "bg-emerald-50",
     items: [
       {
         title: "Satyanarayan Vrat Katha",
@@ -242,9 +234,7 @@ const categoryContent = {
     title: "Festivals",
     icon: "📅",
     tagline: "Celebrations of faith, light and divine grace through the year",
-    gradient: "from-pink-500 to-rose-600",
     metaLabel: "Celebrated In",
-    metaBg: "bg-pink-50",
     items: [
       {
         title: "Hanuman Jayanti",
@@ -301,9 +291,7 @@ const categoryContent = {
     title: "Temples",
     icon: "🛕",
     tagline: "Sacred abodes of the divine across India",
-    gradient: "from-amber-500 to-orange-600",
     metaLabel: "Location",
-    metaBg: "bg-amber-50",
     items: [
       {
         title: "Salasar Balaji Temple",

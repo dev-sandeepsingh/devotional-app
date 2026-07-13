@@ -10,16 +10,16 @@ const CollapsibleSection = memo(function CollapsibleSection({ icon, title, child
         onClick={toggleOpen}
         aria-expanded={isOpen}
         aria-controls={`section-content-${title}`}
-        className="w-full px-8 py-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 group focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+        className="w-full px-8 py-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 group focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400"
       >
         <span className="flex items-center gap-3 flex-1 text-left">
           <span className="text-3xl" aria-hidden="true">{icon}</span>
-          <h2 className="text-2xl md:text-3xl font-bold dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+          <h2 className="text-2xl md:text-3xl font-bold dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
             {title}
           </h2>
         </span>
         <svg
-          className={`w-6 h-6 text-purple-600 dark:text-purple-400 flex-shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 ml-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -36,7 +36,7 @@ const CollapsibleSection = memo(function CollapsibleSection({ icon, title, child
         <div className="px-8 py-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
           {children}
         </div>
-        <div className="h-1 bg-gradient-to-r from-purple-600 to-blue-600" aria-hidden="true" />
+        <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500" aria-hidden="true" />
       </div>
     </section>
   );

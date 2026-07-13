@@ -5,12 +5,12 @@ import { blogsApi } from "../admin/api";
 // A small set of icons + gradient accents so the API-driven cards (which carry
 // no imagery of their own) still feel varied. Picked deterministically by index.
 const ACCENTS = [
-  { icon: "📿", bar: "from-green-500 to-teal-500" },
+  { icon: "📿", bar: "from-amber-500 to-orange-500" },
   { icon: "🧘", bar: "from-orange-500 to-red-500" },
-  { icon: "📖", bar: "from-indigo-500 to-purple-500" },
-  { icon: "✨", bar: "from-yellow-500 to-orange-500" },
-  { icon: "🙏", bar: "from-pink-500 to-rose-500" },
-  { icon: "💫", bar: "from-sky-500 to-blue-500" },
+  { icon: "📖", bar: "from-red-500 to-rose-500" },
+  { icon: "✨", bar: "from-yellow-500 to-amber-500" },
+  { icon: "🙏", bar: "from-rose-500 to-red-500" },
+  { icon: "💫", bar: "from-orange-400 to-amber-500" },
 ];
 
 function accentFor(index) {
@@ -68,10 +68,10 @@ export default function Blog() {
       </Helmet>
 
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-green-600 to-teal-600 text-white py-12 px-4">
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">📖 Devotional Blog</h1>
-          <p className="text-lg opacity-90">Articles and insights on spirituality, devotion, and spiritual practices</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">📖 Devotional Blog</h1>
+          <p className="text-base opacity-90">Articles and insights on spirituality, devotion, and spiritual practices</p>
         </div>
       </section>
 
@@ -98,7 +98,7 @@ export default function Blog() {
             <p className="font-medium mb-4">{error}</p>
             <button
               onClick={retry}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
             >
               Try Again
             </button>
@@ -118,7 +118,7 @@ export default function Blog() {
                   key={post.id}
                   type="button"
                   onClick={() => setActive(post)}
-                  className="group flex flex-col text-left bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+                  className="group flex flex-col text-left bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                 >
                   <div className={`bg-gradient-to-r ${accent.bar} h-2`} />
 
@@ -131,7 +131,7 @@ export default function Blog() {
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
                       {post.title}
                     </h3>
 
@@ -139,7 +139,7 @@ export default function Blog() {
                       {post.description}
                     </p>
 
-                    <span className="mt-auto inline-flex items-center text-green-600 dark:text-green-400 font-semibold group-hover:translate-x-1 transition">
+                    <span className="mt-auto inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold group-hover:translate-x-1 transition">
                       Read Article →
                     </span>
                   </div>
@@ -151,7 +151,7 @@ export default function Blog() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-gray-800 dark:to-gray-700 py-16 px-4 mt-8">
+      <section className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-700 py-16 px-4 mt-8">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4 dark:text-white">Subscribe to Our Newsletter</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -161,9 +161,9 @@ export default function Blog() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
-            <button className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
               Subscribe
             </button>
           </div>
@@ -182,7 +182,7 @@ export default function Blog() {
             aria-labelledby="blog-modal-title"
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col"
           >
-            <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-t-2xl p-6 flex items-start justify-between gap-4">
+            <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-t-2xl p-6 flex items-start justify-between gap-4">
               <div>
                 <h2 id="blog-modal-title" className="text-2xl md:text-3xl font-bold mb-2">{active.title}</h2>
                 <div className="flex items-center gap-4 text-sm opacity-90">

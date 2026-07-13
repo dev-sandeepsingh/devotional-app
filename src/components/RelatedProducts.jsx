@@ -11,7 +11,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/chalisa",
       views: "12.4K",
       rating: "4.9",
-      color: "from-purple-500 to-blue-500"
+      color: "from-amber-500 to-orange-500"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/mantra",
       views: "8.2K",
       rating: "4.8",
-      color: "from-green-500 to-teal-500"
+      color: "from-orange-500 to-red-500"
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/aarti",
       views: "6.7K",
       rating: "4.9",
-      color: "from-orange-500 to-red-500"
+      color: "from-red-500 to-rose-500"
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/blog",
       views: "5.3K",
       rating: "4.7",
-      color: "from-indigo-500 to-purple-500"
+      color: "from-rose-500 to-red-500"
     },
     {
       id: 5,
@@ -51,7 +51,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/mantra",
       views: "9.1K",
       rating: "4.9",
-      color: "from-yellow-500 to-orange-500"
+      color: "from-yellow-500 to-amber-500"
     },
     {
       id: 6,
@@ -61,7 +61,7 @@ const RelatedProducts = memo(function RelatedProducts() {
       link: "/aarti",
       views: "7.8K",
       rating: "4.8",
-      color: "from-pink-500 to-red-500"
+      color: "from-orange-400 to-amber-500"
     }
   ];
 
