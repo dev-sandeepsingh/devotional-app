@@ -71,6 +71,17 @@
 | Secondary Text | `gray-600` | `gray-400` |
 | Accent Headers | `gray-800` | `white` |
 
+### Warm "temple night" palette (dark mode only)
+
+Dark mode does **not** use Tailwind's stock cold blue-grays. `src/index.css` overrides the
+`--color-gray-*` / `--color-slate-*` / `--color-white` CSS variables under `html.dark`, so every
+`dark:*-gray-*` utility in the app resolves to a warm amber-tinted scale (page bg `#14100b` →
+ivory text `#f5efe4`) that matches the saffron/orange brand. The lightness order of the stock
+scale is preserved, so existing contrast pairings stay readable. **To tune the dark palette,
+edit those variables in `index.css` — don't recolor individual components.** A `night-glow`
+helper class (used on the Home page root) adds a faint amber radial glow behind the hero in
+dark mode.
+
 ## 🔄 How It Works
 
 1. **On First Load**:

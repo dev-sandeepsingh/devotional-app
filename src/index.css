@@ -14,11 +14,47 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Root-level fallback colors for dark mode. Component-level `dark:` utility classes
-   now handle everything else consistently, so the previous broad element overrides
-   (html.dark section/main/aside/.grid > div, etc.) have been removed — they fought the
-   utilities and forced some cards to render white/unreadable in dark mode. */
+/* ── Dark mode “temple night” palette ────────────────────────────────────────
+   Tailwind v4 utilities resolve their colors through CSS variables, so
+   overriding the neutral scales here re-themes every existing `dark:` class in
+   the app at once. The values keep the stock palette's lightness order (so all
+   existing contrast pairings stay readable) but trade the cold blue-gray cast
+   for a warm amber undertone that matches the site's saffron/orange brand —
+   diyas at night rather than a spreadsheet. */
 html.dark {
-  background-color: rgb(3, 7, 30);
-  color: rgb(229, 231, 235);
+  color-scheme: dark; /* native form controls & scrollbars render dark */
+  background-color: #14100b;
+  color: #f5efe4;
+
+  --color-white: #faf5ea; /* soften pure white to warm ivory in dark mode */
+
+  --color-gray-50: #faf7f0;
+  --color-gray-100: #f5efe4;
+  --color-gray-200: #eae1d0;
+  --color-gray-300: #d9cdb8;
+  --color-gray-400: #b8a98f;
+  --color-gray-500: #91816c;
+  --color-gray-600: #55432c;
+  --color-gray-700: #3d2f1e;
+  --color-gray-800: #2a2014;
+  --color-gray-900: #1e160f;
+  --color-gray-950: #14100b;
+
+  /* A few components use slate for surfaces (e.g. Sidebar) — keep them on the
+     same warm scale so dark surfaces don't mix warm and cold grays. */
+  --color-slate-800: #2a2014;
+  --color-slate-900: #1e160f;
+}
+
+/* Warm candle-glow selection + ambient page glow for dark mode. `.night-glow`
+   only paints a background-image, so it layers on top of whatever bg-* utility
+   the element already has. */
+html.dark ::selection {
+  background-color: rgb(251 146 60 / 0.35);
+}
+
+html.dark .night-glow {
+  background-image:
+    radial-gradient(70rem 32rem at 50% -6rem, rgb(251 146 60 / 0.09), transparent 65%),
+    radial-gradient(45rem 22rem at 90% -2rem, rgb(190 60 30 / 0.07), transparent 60%);
 }

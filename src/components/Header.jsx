@@ -5,7 +5,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 const Header = memo(function Header({ onMenuToggle }) {
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 shadow-lg">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-950 dark:via-red-900 dark:to-red-950 shadow-lg border-b border-transparent dark:border-orange-400/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 gap-2">
           <button

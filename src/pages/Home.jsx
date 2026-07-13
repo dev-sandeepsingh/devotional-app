@@ -34,24 +34,24 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <div className="min-h-screen bg-white dark:bg-gray-950 night-glow">
       <Helmet>
         <title>Devotional App | Spiritual Chants & Mantras</title>
         <meta name="description" content="Explore devotional content in multiple languages." />
       </Helmet>
 
       {/* Hero Slider */}
-      <section className="w-full bg-white dark:bg-gray-950 pt-8 px-4">
+      <section className="w-full pt-8 px-4">
         <HeroSlider />
       </section>
 
       {/* Quick Access */}
-      <section className="w-full bg-white dark:bg-gray-950 pt-6 px-4">
+      <section className="w-full pt-6 px-4">
         <QuickAccess />
       </section>
 
       {/* Categories Section */}
-      <section className="w-full bg-white dark:bg-gray-950 py-10 px-4">
+      <section className="w-full py-10 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Explore by Category</h2>
@@ -84,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* Today's Featured */}
-      <section className="w-full bg-white dark:bg-gray-950 pb-10 px-4">
+      <section className="w-full pb-10 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="bg-orange-50 dark:bg-gray-800 rounded-2xl p-5 border border-orange-100 dark:border-gray-700">
             <div className="flex items-center justify-between mb-4">
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* Trending This Week */}
-      <section className="w-full bg-white dark:bg-gray-950 pb-10 px-4">
+      <section className="w-full pb-10 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Trending This Week</h2>
@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* Why Us Section */}
-      <section className="w-full bg-white dark:bg-gray-950 py-12 px-4">
+      <section className="w-full py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
         
@@ -233,9 +233,9 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-white dark:bg-gray-950 py-16 px-4">
+      <section className="w-full py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl p-12 text-center">
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-700 dark:to-red-800 text-white rounded-2xl p-12 text-center dark:ring-1 dark:ring-orange-400/30">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Spiritual Journey</h2>
             <p className="text-lg opacity-90 mb-8">
               Thousands of devotees are already exploring their spirituality with us.
@@ -266,7 +266,7 @@ export default function Home() {
       </section>
 
       {/* Footer CTA */}
-      <section className="w-full bg-white dark:bg-gray-950 py-12 px-4">
+      <section className="w-full py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Help Us Grow</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">

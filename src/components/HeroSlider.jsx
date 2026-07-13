@@ -47,7 +47,7 @@ export default function HeroSlider() {
 
   return (
     <div
-      className="group relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/10 dark:ring-white/10"
+      className="group relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/10 dark:ring-orange-300/25 dark:shadow-orange-950/60"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

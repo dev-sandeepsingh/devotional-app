@@ -17,7 +17,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white text-gray-800 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors duration-200 font-medium text-sm sm:text-base shadow-md flex-shrink-0"
+      className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white text-gray-800 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:ring-1 dark:ring-orange-300/20 transition-colors duration-200 font-medium text-sm sm:text-base shadow-md flex-shrink-0"
       title={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
       <span>{dark ? "☀️" : "🌙"}</span>
