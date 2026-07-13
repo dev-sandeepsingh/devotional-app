@@ -35,11 +35,11 @@ export default function ContentPage({ lang = "hindi" }) {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header with on-page language dropdown */}
-        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-6 mb-8 shadow-lg">
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="min-w-0">
-              <h1 className="text-3xl md:text-4xl font-bold mb-3">🙏 {t("title")}</h1>
-              <p className="text-lg opacity-90">{t("intro")}</p>
+              <h1 className="text-xl md:text-2xl font-bold mb-1.5">🙏 {t("title")}</h1>
+              <p className="text-sm opacity-90">{t("intro")}</p>
             </div>
 
             <label className="flex items-center gap-2 bg-white/15 hover:bg-white/25 rounded-lg px-3 py-2 backdrop-blur-sm transition-colors">

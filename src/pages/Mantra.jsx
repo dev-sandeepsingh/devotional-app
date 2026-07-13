@@ -28,10 +28,10 @@ export default function Mantra() {
         <meta name="description" content="Discover powerful mantras with translations and explanations." />
       </Helmet>
 
-      <header className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-8 px-4">
+      <header className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">✨ Mantras</h1>
-          <p className="text-base opacity-90">Sacred mantras and chants for meditation and spiritual practice</p>
+          <h1 className="text-xl md:text-2xl font-bold mb-1 drop-shadow-lg">✨ Mantras</h1>
+          <p className="text-sm opacity-90">Sacred mantras and chants for meditation and spiritual practice</p>
         </div>
       </header>
 

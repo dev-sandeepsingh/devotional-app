@@ -183,8 +183,8 @@ export default function BlogDetailPage({ slug = "power-of-faith" }) {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-6 mb-8 shadow-lg">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">{post.icon} {post.title}</h1>
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
+          <h1 className="text-xl md:text-2xl font-bold mb-1.5">{post.icon} {post.title}</h1>
           <div className="flex items-center gap-4 text-sm opacity-90">
             <span>📅 {post.date}</span>
             <span>⏱️ {post.readTime}</span>

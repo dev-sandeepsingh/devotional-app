@@ -24,10 +24,10 @@ export default function About() {
       </Helmet>
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 text-white py-8 px-4">
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 text-white py-4 px-4">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 drop-shadow-lg">🙏 About Us</h1>
-          <p className="text-base opacity-90 max-w-2xl">
+          <h1 className="text-xl md:text-2xl font-bold mb-1 drop-shadow-lg">🙏 About Us</h1>
+          <p className="text-sm opacity-90 max-w-2xl">
             We are on a mission to make sacred devotional content accessible to everyone, in the language of their heart.
           </p>
         </div>
