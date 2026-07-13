@@ -12,6 +12,7 @@ import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ContentPage from "./pages/ContentPage";
+import CategoryPage from "./pages/CategoryPage";
 import MantraDetailPage from "./pages/MantraDetailPage";
 import AartiDetailPage from "./pages/AartiDetailPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
@@ -56,6 +57,13 @@ export default function App() {
           <Route path="/chalisa" element={<Chalisa />} />
           <Route path="/mantra" element={<Mantra />} />
           <Route path="/aarti" element={<Aarti />} />
+          {/* Category pages (static content — see src/data/categoryContent.js) */}
+          <Route path="/stotras" element={<CategoryPage category="stotras" />} />
+          <Route path="/ashtakams" element={<CategoryPage category="ashtakams" />} />
+          <Route path="/sahasranamas" element={<CategoryPage category="sahasranamas" />} />
+          <Route path="/vrat-kathas" element={<CategoryPage category="vrat-kathas" />} />
+          <Route path="/festivals" element={<CategoryPage category="festivals" />} />
+          <Route path="/temples" element={<CategoryPage category="temples" />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />

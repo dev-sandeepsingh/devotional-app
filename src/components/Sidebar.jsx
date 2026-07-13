@@ -5,13 +5,15 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
 
   const menuItems = [
     { id: "home", label: "Home", icon: "🏠", path: "/" },
-    { id: "chalisa", label: "Chalisas", icon: "📿", path: "/chalisa" },
+    { id: "chalisa", label: "Chalisas", icon: "📖", path: "/chalisa" },
     { id: "mantra", label: "Mantras", icon: "✨", path: "/mantra" },
     { id: "aarti", label: "Aartis", icon: "🎵", path: "/aarti" },
-    { id: "blog", label: "Blog", icon: "📖", path: "/blog" },
-    { id: "saved", label: "Saved", icon: "❤️", path: "/saved" },
-    { id: "explorer", label: "Explorer", icon: "🔍", path: "/explorer" },
-    { id: "search", label: "Search", icon: "🔎", path: "/search" }
+    { id: "stotra", label: "Stotras", icon: "📜", path: "/stotras" },
+    { id: "ashtakam", label: "Ashtakams", icon: "🙏", path: "/ashtakams" },
+    { id: "sahasranama", label: "Sahasranamas", icon: "📚", path: "/sahasranamas" },
+    { id: "vrat-katha", label: "Vrat Kathas", icon: "🕉️", path: "/vrat-kathas" },
+    { id: "festival", label: "Festivals", icon: "📅", path: "/festivals" },
+    { id: "temple", label: "Temples", icon: "🛕", path: "/temples" }
   ];
 
   return (
