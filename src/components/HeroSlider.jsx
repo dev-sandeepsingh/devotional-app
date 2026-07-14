@@ -9,7 +9,7 @@ const SLIDES = [
     title: "जय श्री राम",
     subtitle: "भक्ति से ही मुक्ति मिलती है",
     cta: "हनुमान चालीसा पढ़ें",
-    link: "/hanuman-chalisa-hindi",
+    link: "/chalisa/hanuman-chalisa",
   },
   {
     image: "/assets/hanuman2.png",

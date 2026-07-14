@@ -57,20 +57,61 @@ src/
   App.jsx            BrowserRouter + all <Route> definitions (single source of truth for routing)
   UserShell.jsx      Public-site layout: Header + Sidebar + Footer + BottomNav, renders <Outlet/>
   pages/             One component per route (Home, Chalisa, Mantra, Aarti, Blog, detail pages, etc.)
-  components/         Shared UI (Header, Sidebar, Footer, DarkModeToggle, LanguageSwitcher, ...)
+  components/         Shared UI (Header, Sidebar, Footer, DarkModeToggle, CategoryListPage, ...)
   admin/             Admin panel — its own layout/auth, NOT wrapped in UserShell, not linked from the site
     api.js           apiFetch + resource APIs (authApi, blogsApi)
     session.js       JWT/session helpers (localStorage), isAdmin()
-  i18n/              i18next init + 7 language JSON bundles (hi/en/pa/bn/mr/ta/te)
+  i18n/              i18next init + language JSON bundles, plus per-item content folders (see below)
 ```
+
+## Content pages: categories → items → detail pages
+
+The devotional content is organized as **category (main) pages → items → detail pages**:
+
+- **Category / main pages**: `Chalisa`, `Mantra`, `Aarti` (routes `/chalisa`, `/mantra`,
+  `/aarti`). Each lists the **items** in that category as cards. All three are thin wrappers
+  around the shared `components/CategoryListPage.jsx` so they share one consistent layout/flow.
+- **Items**: e.g. Hanuman Chalisa, Shiv Chalisa, Ram Chalisa (Chalisa); Hanuman/Gayatri/
+  Mahamrityunjaya (Mantra); Hanuman/Om Jai Jagdish/Ganesh (Aarti). Clicking a card opens that
+  item's **detail page** at `/<category>/<item-slug>` (e.g. `/chalisa/hanuman-chalisa`).
+- **Detail page**: a single shared `pages/DetailPage.jsx` for every category. It has an on-page
+  **language dropdown (हिंदी / English)** whose only job is to swap *this page's* content between
+  the item's `hi.json` and `en.json` — it does not change the rest of the site. There is no
+  language switcher in the top bar.
+
+### Content location & shape
+
+Per-item content lives under `src/i18n/<Category>/<item-slug>/` with one file per language:
+
+```
+src/i18n/
+  Chalisa/hanuman-chalisa/{en,hi}.json
+  Mantras/gayatri-mantra/{en,hi}.json
+  Aartis/ganesh-aarti/{en,hi}.json
+  content.js          Registry: auto-discovers the folders above via import.meta.glob
+```
+
+Each `en.json` / `hi.json` has the shape (only `hi` and `en` for now; more languages later):
+
+```json
+{ "title": "", "intro": "", "description": "", "meaning": "",
+  "faq": { "q1": "", "a1": "", "q2": "", "a2": "" } }
+```
+
+**To add an item**: create the folder + `en.json`/`hi.json`; it's auto-discovered. Optionally add
+an icon in `ITEM_ICONS` in `i18n/content.js` (otherwise it falls back to the category icon).
+The list-page card title is composed as `"<hi.title> (<en.title>)"` on a single line.
+
+> Note: this content is currently local JSON. Per the workspace contract, user-facing content
+> should ideally come from the backend/Swagger API — migrate these to the API when endpoints exist.
 
 ### Routing
 
 - All routes live in `App.jsx`. Public routes are nested under `<UserShell/>`; admin routes
   (`/adminLogin`, `/admin/*`) are separate and gated by `RequireAdmin`.
-- Detail pages take content variants via **props** (e.g. `<ContentPage lang="hindi" />`,
-  `<BlogDetailPage slug="..." />`) rather than `useParams()`, to keep the existing hyphenated
-  URLs. See `PROJECT_STRUCTURE.md` for the reasoning.
+- Item detail routes are `/<category>/:slug` → `<DetailPage category="..." />`; the item comes
+  from `useParams()` and the language from the on-page dropdown. Other detail pages (e.g.
+  `<BlogDetailPage slug="..." />`) still take variants via **props**.
 
 ## Conventions
 

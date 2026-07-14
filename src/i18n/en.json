@@ -1,11 +1,14 @@
 {
   "title": "Hanuman Chalisa",
-  "intro": "A devotional hymn dedicated to Lord Hanuman.",
+  "intro": "हनुमान चालीसा भगवान श्री हनुमान जी को समर्पित एक अत्यंत लोकप्रिय और पवित्र स्तोत्र है, जिसका श्रद्धापूर्वक पाठ करने से साहस, भक्ति, आत्मबल और मानसिक शांति प्राप्त होने की धार्मिक मान्यता है।",
+  "description": "॥ जय श्री राम ॥\n॥ श्री हनुमान चालीसा ॥\n॥ दोहा ॥\nश्री गुरु चरण सरोज रज, निज मनु मुकुरु सुधारि।\nवरनऊँ रघुवर विमल जसु, जो दायकु फल चारि॥\nबुद्धिहीन तनु जानिके, सुमिरो पवन कुमार।\nबल बुद्धि विद्या देहु मोहिं, हरहु कलेश विकार॥\n\n॥ चौपाई॥",
   "meaning": "This Chalisa praises Hanuman's strength, devotion, and service to Lord Rama.",
   "faq": {
     "q1": "When should I recite Hanuman Chalisa?",
     "a1": "Traditionally on Tuesdays and Saturdays.",
     "q2": "Can it be recited in any language?",
-    "a2": "Yes, devotion matters more than language."
+    "a2": "Yes, devotion matters more than language.",
+    "q3": "What is the significance of reciting Hanuman Chalisa?",
+    "a3": "It is believed to invoke Hanuman's blessings for strength, courage, and protection."
   }
 }

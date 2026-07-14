@@ -16,7 +16,7 @@ export default function HanumanImage() {
         <div className="relative rounded-full p-1 bg-gradient-to-tr from-orange-500 via-amber-400 to-red-500 shadow-lg">
           <div className="rounded-full p-1 bg-white dark:bg-gray-900">
             <ImageWithFallback
-              src="/assets/hanuman.png"
+              src="/assets/57482.jpg"
               alt="Lord Hanuman - Divine Avatar"
               className="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover object-top hover:scale-105 transition-transform duration-300"
             />

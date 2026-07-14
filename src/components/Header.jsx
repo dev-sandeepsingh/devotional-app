@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import LanguageSwitcher from "./LanguageSwitcher";
 import DarkModeToggle from "./DarkModeToggle";
 
 const Header = memo(function Header({ onMenuToggle }) {
@@ -39,7 +38,6 @@ const Header = memo(function Header({ onMenuToggle }) {
             >
               Donate
             </Link>
-            <LanguageSwitcher />
             <DarkModeToggle />
           </div>
         </div>

@@ -108,7 +108,7 @@ export default function Home() {
                 <p className="text-xs text-gray-500 dark:text-gray-500">12 min read · हिंदी</p>
               </div>
               <Link
-                to="/hanuman-chalisa-hindi"
+                to="/chalisa/hanuman-chalisa"
                 className="flex-shrink-0 inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
               >
                 📖 Read
