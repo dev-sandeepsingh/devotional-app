@@ -68,9 +68,13 @@ src/
 
 The devotional content is organized as **category (main) pages → items → detail pages**:
 
-- **Category / main pages**: `Chalisa`, `Mantra`, `Aarti` (routes `/chalisa`, `/mantra`,
-  `/aarti`). Each lists the **items** in that category as cards. All three are thin wrappers
-  around the shared `components/CategoryListPage.jsx` so they share one consistent layout/flow.
+- **Category / main pages**: Chalisa, Mantras, Aartis, Stotras, Ashtakams, Sahasranamas,
+  Vrat Kathas (routes `/chalisa`, `/mantra`, `/aarti`, `/stotras`, `/ashtakams`,
+  `/sahasranamas`, `/vrat-kathas`). Each lists the **items** in that category as cards.
+  There are **no per-category page components** — one shared
+  `components/CategoryListPage.jsx` renders every category from the `CATEGORIES` registry
+  in `src/i18n/content.js` (header copy, meta tags, and the "about" section all live there),
+  and `App.jsx` generates both the list and detail routes by iterating `CATEGORIES`.
 - **Items**: e.g. Hanuman Chalisa, Shiv Chalisa, Ram Chalisa (Chalisa); Hanuman/Gayatri/
   Mahamrityunjaya (Mantra); Hanuman/Om Jai Jagdish/Ganesh (Aarti). Clicking a card opens that
   item's **detail page** at `/<category>/<item-slug>` (e.g. `/chalisa/hanuman-chalisa`).
@@ -101,6 +105,10 @@ Each `en.json` / `hi.json` has the shape (only `hi` and `en` for now; more langu
 **To add an item**: create the folder + `en.json`/`hi.json`; it's auto-discovered. Optionally add
 an icon in `ITEM_ICONS` in `i18n/content.js` (otherwise it falls back to the category icon).
 The list-page card title is composed as `"<hi.title> (<en.title>)"` on a single line.
+
+**To add a category**: add its folder name to the `import.meta.glob` pattern and a `CATEGORIES`
+entry (route, heading, meta, about copy) in `i18n/content.js` — routes and pages follow
+automatically; no new component or route edits needed.
 
 > Note: this content is currently local JSON. Per the workspace contract, user-facing content
 > should ideally come from the backend/Swagger API — migrate these to the API when endpoints exist.

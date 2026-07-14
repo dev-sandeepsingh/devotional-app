@@ -2,9 +2,9 @@ import { Helmet } from "react-helmet-async";
 import RelatedProducts from "../components/RelatedProducts";
 import categoryContent from "../data/categoryContent";
 
-// Generic listing page for the sidebar categories (Stotras, Ashtakams,
-// Sahasranamas, Vrat Kathas, Festivals, Temples). Content is static and
-// comes from src/data/categoryContent.js.
+// Generic listing page for the static sidebar categories (Festivals, Temples).
+// Content comes from src/data/categoryContent.js and has no detail pages —
+// the devotional content categories use CategoryListPage + DetailPage instead.
 export default function CategoryPage({ category }) {
   const config = categoryContent[category];
 
