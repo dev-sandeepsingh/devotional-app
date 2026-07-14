@@ -7,14 +7,16 @@ import Home from "./pages/Home";
 import Chalisa from "./pages/Chalisa";
 import Mantra from "./pages/Mantra";
 import Aarti from "./pages/Aarti";
+import Stotras from "./pages/Stotras";
+import Ashtakams from "./pages/Ashtakams";
+import Sahasranamas from "./pages/Sahasranamas";
+import VratKathas from "./pages/VratKathas";
 import Blog from "./pages/Blog";
 import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import ContentPage from "./pages/ContentPage";
+import DetailPage from "./pages/DetailPage";
 import CategoryPage from "./pages/CategoryPage";
-import MantraDetailPage from "./pages/MantraDetailPage";
-import AartiDetailPage from "./pages/AartiDetailPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import Explorer from "./pages/Explorer";
 import Search from "./pages/Search";
@@ -57,26 +59,26 @@ export default function App() {
           <Route path="/chalisa" element={<Chalisa />} />
           <Route path="/mantra" element={<Mantra />} />
           <Route path="/aarti" element={<Aarti />} />
+          <Route path="/stotras" element={<Stotras />} />
+          <Route path="/ashtakams" element={<Ashtakams />} />
+          <Route path="/sahasranamas" element={<Sahasranamas />} />
+          <Route path="/vrat-kathas" element={<VratKathas />} />
           {/* Category pages (static content — see src/data/categoryContent.js) */}
-          <Route path="/stotras" element={<CategoryPage category="stotras" />} />
-          <Route path="/ashtakams" element={<CategoryPage category="ashtakams" />} />
-          <Route path="/sahasranamas" element={<CategoryPage category="sahasranamas" />} />
-          <Route path="/vrat-kathas" element={<CategoryPage category="vrat-kathas" />} />
           <Route path="/festivals" element={<CategoryPage category="festivals" />} />
           <Route path="/temples" element={<CategoryPage category="temples" />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          {/* Chalisa Detail Pages */}
-          <Route path="/hanuman-chalisa-hindi" element={<ContentPage lang="hindi" />} />
-          <Route path="/hanuman-chalisa-english" element={<ContentPage lang="english" />} />
-          {/* Mantra Detail Pages */}
-          <Route path="/hanuman-mantra-hindi" element={<MantraDetailPage lang="hindi" />} />
-          <Route path="/hanuman-mantra-english" element={<MantraDetailPage lang="english" />} />
-          {/* Aarti Detail Pages */}
-          <Route path="/hanuman-aarti-hindi" element={<AartiDetailPage lang="hindi" />} />
-          <Route path="/hanuman-aarti-english" element={<AartiDetailPage lang="english" />} />
+          {/* Item detail pages — one route per category, item chosen by :slug.
+              Language (hi/en) is picked by the on-page dropdown, not the URL. */}
+          <Route path="/chalisa/:slug" element={<DetailPage category="Chalisa" />} />
+          <Route path="/mantra/:slug" element={<DetailPage category="Mantras" />} />
+          <Route path="/aarti/:slug" element={<DetailPage category="Aartis" />} />
+          <Route path="/stotras/:slug" element={<DetailPage category="Stotras" />} />
+          <Route path="/ashtakams/:slug" element={<DetailPage category="Ashtakams" />} />
+          <Route path="/sahasranamas/:slug" element={<DetailPage category="Sahasranamas" />} />
+          <Route path="/vrat-kathas/:slug" element={<DetailPage category="VratKathas" />} />
           {/* Blog Detail Pages (slugs match the links in Blog.jsx) */}
           <Route path="/blog/power-of-faith" element={<BlogDetailPage slug="power-of-faith" />} />
           <Route path="/blog/importance-of-hanuman-chalisa" element={<BlogDetailPage slug="importance-of-hanuman-chalisa" />} />
