@@ -180,6 +180,7 @@ const ITEM_ICONS = {
   "Chalisa/gayatri-chalisa": "🌅",
   "Chalisa/lakshmi-chalisa": "🪷",
   "Chalisa/saraswati-chalisa": "🦢",
+  "Chalisa/saibaba-chalisa": "🙏",
   "Mantras/hanuman-mantra": "✨",
   "Mantras/gayatri-mantra": "🌅",
   "Mantras/mahamrityunjaya-mantra": "🕉️",
@@ -224,6 +225,42 @@ export function getItems(category) {
       // Short English intro for the card (falls back to Hindi).
       intro: group[slug].en?.intro || group[slug].hi?.intro || "",
     }));
+}
+
+// Flat index of every item across all categories, for site search.
+// haystack = everything a query can match against, lowercased.
+const SEARCH_INDEX = Object.entries(content).flatMap(([category, group]) =>
+  Object.keys(group).map((slug) => {
+    const item = group[slug];
+    return {
+      category,
+      slug,
+      path: `/${CATEGORIES[category]?.route}/${slug}`,
+      icon: iconFor(category, slug),
+      cardTitle: cardTitle(item),
+      intro: item.en?.intro || item.hi?.intro || "",
+      haystack: [item.hi?.title, item.en?.title, slug.replace(/-/g, " "), category]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase(),
+    };
+  })
+);
+
+// Search all items: every whitespace-separated token must appear in the
+// haystack (works for both "hanuman chalisa" and "हनुमान"). Items whose
+// haystack starts with the query rank first.
+export function searchItems(query, limit = 8) {
+  const q = (query || "").trim().toLowerCase();
+  if (!q) return [];
+  const tokens = q.split(/\s+/);
+  return SEARCH_INDEX.filter((item) => tokens.every((t) => item.haystack.includes(t)))
+    .sort((a, b) => {
+      const as = a.haystack.startsWith(q) ? 0 : 1;
+      const bs = b.haystack.startsWith(q) ? 0 : 1;
+      return as - bs || a.cardTitle.localeCompare(b.cardTitle);
+    })
+    .slice(0, limit);
 }
 
 // A single item's content for the detail page, or null if unknown.

@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
+import SearchBar from "./SearchBar";
 
 const Header = memo(function Header({ onMenuToggle }) {
   return (
@@ -32,6 +33,18 @@ const Header = memo(function Header({ onMenuToggle }) {
           </nav>
           
           <div className="flex gap-2 sm:gap-4 items-center flex-shrink-0">
+            <div className="hidden lg:block">
+              <SearchBar variant="header" placeholder="Search..." />
+            </div>
+            <Link
+              to="/search"
+              className="lg:hidden p-2 rounded-lg hover:bg-red-700 dark:hover:bg-red-900 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+              aria-label="Search"
+            >
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" />
+              </svg>
+            </Link>
             <Link
               to="/donate"
               className="md:hidden bg-white text-red-600 px-2.5 py-1.5 rounded-lg text-sm font-semibold hover:bg-orange-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white"
