@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import HanumanImage from "./HanumanImage";
 import RelatedProducts from "./RelatedProducts";
+import Breadcrumbs from "./Breadcrumbs";
 import { getItems, CATEGORIES } from "../i18n/content";
 
 // The list page for every content category (Chalisa, Mantras, Aartis, Stotras,
@@ -21,6 +22,11 @@ export default function CategoryListPage({ category }) {
 
       <header className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 px-4">
         <div className="max-w-6xl mx-auto">
+          <Breadcrumbs
+            variant="light"
+            crumbs={[{ label: cat.heading.slice(cat.heading.indexOf(" ") + 1) }]}
+            className="mb-1.5"
+          />
           <h1 className="text-xl md:text-2xl font-bold mb-1 drop-shadow-lg">{cat.heading}</h1>
           <p className="text-sm opacity-90">{cat.subtitle}</p>
         </div>

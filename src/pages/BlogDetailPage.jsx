@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const BLOG_POSTS = {
   "power-of-faith": {
@@ -182,6 +183,11 @@ export default function BlogDetailPage({ slug = "power-of-faith" }) {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs
+          crumbs={[{ label: "Blog", to: "/blog" }, { label: post.title }]}
+          className="mb-4"
+        />
+
         {/* Header */}
         <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
           <h1 className="text-xl md:text-2xl font-bold mb-1.5">{post.icon} {post.title}</h1>

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import RelatedProducts from "../components/RelatedProducts";
+import Breadcrumbs from "../components/Breadcrumbs";
 import categoryContent from "../data/categoryContent";
 
 // Generic listing page for the static sidebar categories (Festivals, Temples).
@@ -18,6 +19,7 @@ export default function CategoryPage({ category }) {
       {/* Header Section */}
       <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 px-4">
         <div className="max-w-6xl mx-auto">
+          <Breadcrumbs variant="light" crumbs={[{ label: config.title }]} className="mb-1.5" />
           <h1 className="text-xl md:text-2xl font-bold mb-1 drop-shadow-lg">{config.icon} {config.title}</h1>
           <p className="text-sm opacity-90">{config.tagline}</p>
         </div>

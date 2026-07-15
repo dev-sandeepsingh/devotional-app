@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
+import Breadcrumbs from "../components/Breadcrumbs";
 import { blogsApi } from "../admin/api";
 
 // A small set of icons + gradient accents so the API-driven cards (which carry
@@ -70,6 +71,7 @@ export default function Blog() {
       {/* Header Section */}
       <section className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 px-4">
         <div className="max-w-6xl mx-auto">
+          <Breadcrumbs variant="light" crumbs={[{ label: "Blog" }]} className="mb-1.5" />
           <h1 className="text-xl md:text-2xl font-bold mb-1 drop-shadow-lg">📖 Devotional Blog</h1>
           <p className="text-sm opacity-90">Articles and insights on spirituality, devotion, and spiritual practices</p>
         </div>

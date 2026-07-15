@@ -3,6 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
+import Breadcrumbs from "../components/Breadcrumbs";
 import { getItem, CATEGORIES } from "../i18n/content";
 
 // Languages offered by the on-page dropdown. This selects only this page's
@@ -11,6 +12,19 @@ const DETAIL_LANGS = [
   { code: "hi", label: "हिंदी" },
   { code: "en", label: "English" },
 ];
+
+// Accent colors cycled across FAQ entries.
+const FAQ_BORDERS = ["border-orange-500", "border-red-500", "border-yellow-500"];
+
+// Flatten a { q1, a1, q2, a2, ... } faq object into ordered [{ q, a }] pairs.
+function toFaqPairs(faq) {
+  if (!faq) return [];
+  const pairs = [];
+  for (let i = 1; faq[`q${i}`]; i++) {
+    if (faq[`a${i}`]) pairs.push({ q: faq[`q${i}`], a: faq[`a${i}`] });
+  }
+  return pairs;
+}
 
 // Shared detail page for every category (Chalisa / Mantra / Aarti). The category
 // comes in as a prop from the route; the item slug comes from the URL.
@@ -23,6 +37,10 @@ export default function DetailPage({ category }) {
   if (!item) return <Navigate to={`/${CATEGORIES[category]?.route || ""}`} replace />;
 
   const c = item[lang] || item.hi || item.en;
+  const faqPairs = toFaqPairs(c.faq);
+  const cat = CATEGORIES[category];
+  // Category display name without its leading emoji, e.g. "📿 Chalisas" → "Chalisas".
+  const catLabel = cat.heading.slice(cat.heading.indexOf(" ") + 1);
 
   return (
     <article className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -32,6 +50,11 @@ export default function DetailPage({ category }) {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
+        <Breadcrumbs
+          crumbs={[{ label: catLabel, to: `/${cat.route}` }, { label: c.title }]}
+          className="mb-4"
+        />
+
         {/* Header with on-page language dropdown */}
         <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
           <div className="flex items-start justify-between gap-3">
@@ -40,19 +63,28 @@ export default function DetailPage({ category }) {
               <p className="text-sm opacity-90">{c.intro}</p>
             </div>
 
-            <label className="flex items-center gap-1 bg-white/15 hover:bg-white/25 rounded-lg px-2 py-1.5 backdrop-blur-sm transition-colors flex-shrink-0 self-start">
-              <span className="text-base" aria-hidden="true">🌐</span>
-              <span className="sr-only">Choose language</span>
-              <select
-                value={lang}
-                onChange={(e) => setLang(e.target.value)}
-                className="bg-transparent text-white text-sm font-medium focus:outline-none cursor-pointer [&>option]:text-gray-900"
-              >
-                {DETAIL_LANGS.map((l) => (
-                  <option key={l.code} value={l.code}>{l.label}</option>
-                ))}
-              </select>
-            </label>
+            <div
+              role="group"
+              aria-label="Choose language"
+              className="flex items-center gap-1 bg-black/20 rounded-full p-1 backdrop-blur-sm ring-1 ring-white/30 shadow-lg flex-shrink-0 self-start"
+            >
+              <span className="text-base pl-1.5" aria-hidden="true">🌐</span>
+              {DETAIL_LANGS.map((l) => (
+                <button
+                  key={l.code}
+                  type="button"
+                  onClick={() => setLang(l.code)}
+                  aria-pressed={lang === l.code}
+                  className={`px-3 py-1 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                    lang === l.code
+                      ? "bg-white text-orange-600 shadow-md scale-105"
+                      : "text-white/90 hover:bg-white/20"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -72,28 +104,16 @@ export default function DetailPage({ category }) {
           </CollapsibleSection>
         )}
 
-        {/* FAQ */}
-        {c.faq && (
+        {/* FAQ — renders every qN/aN pair present in the item's faq object */}
+        {faqPairs.length > 0 && (
           <CollapsibleSection icon="❓" title="Frequently Asked Questions" defaultOpen={false}>
             <div className="space-y-6">
-              {c.faq.q1 && (
-                <div className="border-l-4 border-orange-500 pl-4">
-                  <h3 className="text-lg font-bold dark:text-white mb-2">{c.faq.q1}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{c.faq.a1}</p>
+              {faqPairs.map(({ q, a }, i) => (
+                <div key={q} className={`border-l-4 pl-4 ${FAQ_BORDERS[i % FAQ_BORDERS.length]}`}>
+                  <h3 className="text-lg font-bold dark:text-white mb-2">{q}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">{a}</p>
                 </div>
-              )}
-              {c.faq.q2 && (
-                <div className="border-l-4 border-red-500 pl-4">
-                  <h3 className="text-lg font-bold dark:text-white mb-2">{c.faq.q2}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{c.faq.a2}</p>
-                </div>
-              )}
-              {c.faq.q3 && (
-                <div className="border-l-4 border-yellow-500 pl-4">
-                  <h3 className="text-lg font-bold dark:text-white mb-2">{c.faq.q3}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">{c.faq.a3}</p>
-                </div>
-              )}
+              ))}
             </div>
           </CollapsibleSection>
         )}
