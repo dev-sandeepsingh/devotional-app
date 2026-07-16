@@ -43,8 +43,8 @@ export default function CategoryListPage({ category }) {
                   to={`/${cat.route}/${item.slug}`}
                   className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1 flex flex-col"
                 >
-                  <div className="bg-gradient-to-r from-orange-500 to-red-500 p-5 text-white">
-                    <div className="text-4xl mb-3" aria-hidden="true">{item.icon}</div>
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 p-5 text-white flex items-center gap-3">
+                    <span className="text-3xl shrink-0" aria-hidden="true">{item.icon}</span>
                     <h2 className="text-base font-bold leading-snug truncate" title={item.cardTitle}>
                       {item.cardTitle}
                     </h2>

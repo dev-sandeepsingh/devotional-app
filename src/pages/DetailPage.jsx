@@ -123,7 +123,7 @@ export default function DetailPage({ category }) {
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             Spread the spiritual wisdom by sharing this sacred text with friends and family
           </p>
-          <ShareButtons url={window.location.href} />
+          <ShareButtons url={window.location.href} title={c.title} />
         </CollapsibleSection>
       </div>
     </article>

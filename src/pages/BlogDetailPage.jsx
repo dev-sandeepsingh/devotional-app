@@ -227,7 +227,7 @@ export default function BlogDetailPage({ slug = "power-of-faith" }) {
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             Found this article inspiring? Share it with friends and family to spread spiritual wisdom
           </p>
-          <ShareButtons url={window.location.href} />
+          <ShareButtons url={window.location.href} title={post.title} />
         </CollapsibleSection>
       </div>
     </article>
