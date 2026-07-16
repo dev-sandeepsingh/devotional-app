@@ -12,18 +12,18 @@ export default function Home() {
     { id: "blog", name: "Blog", icon: "📖", link: "/blog", description: "Spiritual articles", color: "red", iconBg: "bg-red-100 dark:bg-red-900/40" }
   ];
 
-  // Placeholder trending data — the app currently only has Hanuman content and no
-  // trending data source, so these link to /chalisa for now. See MOBILE_VIEW_SPEC.md.
+  // Hand-picked trending items (no trending data source yet), linking straight
+  // to their detail pages. See MOBILE_VIEW_SPEC.md.
   const trending = [
-    { title: "Shiv Chalisa", meta: "11 min read", icon: "🔱", link: "/chalisa" },
-    { title: "Durga Chalisa", meta: "13 min read", icon: "🌺", link: "/chalisa" },
-    { title: "Gayatri Mantra", meta: "8 min read", icon: "🕉️", link: "/mantra" }
+    { title: "Shiv Chalisa", meta: "11 min read", icon: "🔱", link: "/chalisa/shiv-chalisa" },
+    { title: "Durga Chalisa", meta: "13 min read", icon: "🦁", link: "/chalisa/durga-chalisa" },
+    { title: "Gayatri Mantra", meta: "8 min read", icon: "🕉️", link: "/mantra/gayatri-mantra" }
   ];
 
   const featuredItems = [
-    { title: "Hanuman Chalisa", category: "chalisa", views: "12.4K", rating: "4.9", link: "/chalisa" },
-    { title: "Morning Meditation", category: "mantra", views: "8.2K", rating: "4.8", link: "/mantra" },
-    { title: "Evening Aarti", category: "aarti", views: "6.7K", rating: "4.9", link: "/aarti" }
+    { title: "Hanuman Chalisa", category: "chalisa", icon: "📿", views: "12.4K", rating: "4.9", link: "/chalisa/hanuman-chalisa" },
+    { title: "Morning Meditation", category: "mantra", icon: "🧘", views: "8.2K", rating: "4.8", link: "/mantra" },
+    { title: "Evening Aarti", category: "aarti", icon: "🪔", views: "6.7K", rating: "4.9", link: "/aarti" }
   ];
 
   const colorMap = {
@@ -165,7 +165,14 @@ export default function Home() {
                 to={item.link}
                 className="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group"
               >
-                <div className={`h-32 bg-gradient-to-r ${colorMap[categories.find(c => c.id === item.category)?.color]} opacity-80 group-hover:opacity-100 transition`}></div>
+                <div className={`relative h-32 bg-gradient-to-r ${colorMap[categories.find(c => c.id === item.category)?.color]} opacity-90 group-hover:opacity-100 transition flex items-center justify-center`}>
+                  <span className="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform" aria-hidden="true">
+                    {item.icon}
+                  </span>
+                  <span className="absolute top-3 right-3 text-[11px] font-semibold uppercase tracking-wide bg-white/25 text-white px-2.5 py-0.5 rounded-full backdrop-blur-sm">
+                    {categories.find(c => c.id === item.category)?.name}
+                  </span>
+                </div>
                 <div className="p-5">
                   <h3 className="font-bold text-gray-800 dark:text-white text-lg mb-2 group-hover:text-orange-500 transition">
                     {item.title}

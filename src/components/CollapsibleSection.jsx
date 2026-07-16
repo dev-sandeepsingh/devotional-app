@@ -29,14 +29,18 @@ const CollapsibleSection = memo(function CollapsibleSection({ icon, title, child
         </svg>
       </button>
 
+      {/* grid-rows animation instead of a max-height cap so arbitrarily long
+          content (e.g. full chalisa meanings) is never clipped when open */}
       <div
         id={`section-content-${title}`}
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
       >
-        <div className="px-8 py-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-          {children}
+        <div className="overflow-hidden">
+          <div className="px-6 md:px-8 py-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+            {children}
+          </div>
+          <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500" aria-hidden="true" />
         </div>
-        <div className="h-1 bg-gradient-to-r from-orange-500 to-red-500" aria-hidden="true" />
       </div>
     </section>
   );
