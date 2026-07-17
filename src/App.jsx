@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserShell from "./UserShell";
 
 // User-facing pages
@@ -14,6 +14,8 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import Explorer from "./pages/Explorer";
 import Search from "./pages/Search";
 import Saved from "./pages/Saved";
+import NotFound from "./pages/NotFound";
+import TimeCollectionPage from "./pages/TimeCollectionPage";
 import CategoryListPage from "./components/CategoryListPage";
 import { CATEGORIES } from "./i18n/content";
 
@@ -48,6 +50,9 @@ export default function App() {
         {/* Public user-facing site, wrapped in the shared shell */}
         <Route element={<UserShell />}>
           <Route path="/" element={<Home />} />
+          {/* Curated Morning / Evening collections (Home Quick Access chips) */}
+          <Route path="/morning" element={<TimeCollectionPage period="morning" />} />
+          <Route path="/evening" element={<TimeCollectionPage period="evening" />} />
           <Route path="/explorer" element={<Explorer />} />
           <Route path="/search" element={<Search />} />
           <Route path="/saved" element={<Saved />} />
@@ -73,10 +78,11 @@ export default function App() {
           <Route path="/blog/importance-of-hanuman-chalisa" element={<BlogDetailPage slug="importance-of-hanuman-chalisa" />} />
           <Route path="/blog/mantra-meditation-benefits" element={<BlogDetailPage slug="mantra-meditation-benefits" />} />
           <Route path="/blog/daily-devotional-guide" element={<BlogDetailPage slug="daily-devotional-guide" />} />
-        </Route>
 
-        {/* Unknown route → redirect to home */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Unknown route → friendly 404 with search (inside the shell so
+              the header/nav stay available) */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -265,9 +265,88 @@ export function getItems(category) {
       slug,
       icon: iconFor(category, slug),
       cardTitle: cardTitle(group[slug]),
+      // Separate scripts so cards can show Hindi prominently with English below.
+      titleHi: group[slug].hi?.title || "",
+      titleEn: group[slug].en?.title || "",
       // Short English intro for the card (falls back to Hindi).
       intro: group[slug].en?.intro || group[slug].hi?.intro || "",
     }));
+}
+
+// Optional named groups per category, rendered as sections on the list page.
+// Slugs not listed in any group fall into the trailing catch-all group.
+// Categories without an entry here render as a single ungrouped list.
+const CATEGORY_GROUPS = {
+  Chalisa: [
+    {
+      title: "Popular Chalisas",
+      slugs: [
+        "hanuman-chalisa", "shiv-chalisa", "ram-chalisa", "krishna-chalisa",
+        "ganesh-chalisa", "durga-chalisa", "lakshmi-chalisa", "saraswati-chalisa",
+        "vishnu-chalisa", "gayatri-chalisa", "radha-chalisa", "brahma-chalisa",
+      ],
+    },
+    {
+      title: "Navadurga — Nine Forms of Maa Durga",
+      slugs: [
+        "shailaputri-chalisa", "brahmacharini-chalisa", "chandraghanta-chalisa",
+        "kushmanda-chalisa", "skandamata-chalisa", "katyayani-chalisa",
+        "kalaratri-chalisa", "mahagauri-chalisa", "siddhidatri-chalisa",
+      ],
+    },
+    {
+      title: "Navagraha — Nine Planets",
+      slugs: [
+        "surya-chalisa", "chandra-chalisa", "mangal-chalisa", "budh-chalisa",
+        "brihaspati-chalisa", "shukra-chalisa", "shani-chalisa",
+        "rahu-chalisa", "ketu-chalisa", "navgrah-chalisa",
+      ],
+    },
+    {
+      title: "Devi Chalisas",
+      slugs: [
+        "kali-chalisa", "mahakali-chalisa", "santoshi-chalisa", "parvati-chalisa",
+        "tulsi-chalisa", "annapurna-chalisa", "chamunda-chalisa",
+        "banglamukhi-chalisa", "vindhyeshwari-chalisa", "tuljabhavani-chalisa",
+        "ahoi-chalisa", "sheetla-chalisa",
+      ],
+    },
+    {
+      title: "Sacred Rivers",
+      slugs: ["ganga-chalisa", "yamuna-chalisa", "narmada-chalisa"],
+    },
+    {
+      title: "Deities & Saints",
+      slugs: [
+        "khatu-shyam-chalisa", "balaji-chalisa", "kartikeya-chalisa",
+        "bhairav-chalisa", "kuber-chalisa", "chitragupta-chalisa",
+        "parshuram-chalisa", "saibaba-chalisa", "ravidas-chalisa", "guru-chalisa",
+      ],
+    },
+  ],
+};
+
+// Items for a category's list page, arranged into named sections when the
+// category has a CATEGORY_GROUPS entry: [{ title, items }]. Grouped slugs keep
+// their configured order; unlisted slugs land in a trailing "More" section.
+// Categories without groups return one section with title: null.
+export function getGroupedItems(category) {
+  const items = getItems(category);
+  const groups = CATEGORY_GROUPS[category];
+  if (!groups) return [{ title: null, items }];
+
+  const bySlug = new Map(items.map((item) => [item.slug, item]));
+  const sections = groups
+    .map(({ title, slugs }) => ({
+      title,
+      items: slugs.map((s) => bySlug.get(s)).filter(Boolean),
+    }))
+    .filter((s) => s.items.length > 0);
+
+  const grouped = new Set(groups.flatMap((g) => g.slugs));
+  const rest = items.filter((item) => !grouped.has(item.slug));
+  if (rest.length) sections.push({ title: "More", items: rest });
+  return sections;
 }
 
 // Flat index of every item across all categories, for site search.

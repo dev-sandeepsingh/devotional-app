@@ -1,7 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
+import { getStreak, readToday } from "../lib/streak";
 
 export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }) {
   const location = useLocation();
+  // Re-read on every render — route changes re-render the sidebar, so the
+  // widget updates right after DetailPage records a reading.
+  const streak = getStreak();
+  const doneToday = readToday();
 
   const menuItems = [
     { id: "home", label: "Home", icon: "🏠", path: "/" },
@@ -77,17 +82,26 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
         })}
       </nav>
 
-      {/* Daily Streak widget (static display — no tracking logic yet) */}
+      {/* Daily Streak — tracked in localStorage; a day counts once the user
+          opens any content detail page (see src/lib/streak.js) */}
       <div className={`p-4 ${collapsed ? "lg:hidden" : ""}`}>
         <div className="rounded-xl bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 p-4">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xl" aria-hidden="true">🔥</span>
+            <span className={`text-xl ${streak > 0 ? "" : "grayscale opacity-60"}`} aria-hidden="true">🔥</span>
             <div>
               <p className="text-sm font-bold text-gray-800 dark:text-white leading-tight">Daily Streak</p>
-              <p className="text-xs text-orange-600 dark:text-orange-400 font-semibold leading-tight">7 Days</p>
+              <p className="text-xs text-orange-600 dark:text-orange-400 font-semibold leading-tight">
+                {streak > 0 ? `${streak} ${streak === 1 ? "Day" : "Days"}` : "No streak yet"}
+              </p>
             </div>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Keep your devotion alive!</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {streak === 0
+              ? "Read any chalisa today to start your streak!"
+              : doneToday
+                ? "Today's reading is done. Keep it up!"
+                : "Read something today to keep it alive!"}
+          </p>
         </div>
       </div>
 
