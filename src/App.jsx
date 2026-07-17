@@ -15,6 +15,7 @@ import Explorer from "./pages/Explorer";
 import Search from "./pages/Search";
 import Saved from "./pages/Saved";
 import NotFound from "./pages/NotFound";
+import TimeCollectionPage from "./pages/TimeCollectionPage";
 import CategoryListPage from "./components/CategoryListPage";
 import { CATEGORIES } from "./i18n/content";
 
@@ -49,6 +50,9 @@ export default function App() {
         {/* Public user-facing site, wrapped in the shared shell */}
         <Route element={<UserShell />}>
           <Route path="/" element={<Home />} />
+          {/* Curated Morning / Evening collections (Home Quick Access chips) */}
+          <Route path="/morning" element={<TimeCollectionPage period="morning" />} />
+          <Route path="/evening" element={<TimeCollectionPage period="evening" />} />
           <Route path="/explorer" element={<Explorer />} />
           <Route path="/search" element={<Search />} />
           <Route path="/saved" element={<Saved />} />

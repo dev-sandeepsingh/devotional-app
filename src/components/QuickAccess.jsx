@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 
+// Curated time-of-day collections — see src/data/timeCollections.js.
 const CHIPS = [
-  { id: "morning", label: "Morning", icon: "☀️", to: "/search?q=morning" },
-  { id: "evening", label: "Evening", icon: "🌙", to: "/search?q=evening" },
-  { id: "tuesday", label: "Tuesday", icon: "📅", to: "/search?q=tuesday" },
-  { id: "saturday", label: "Saturday", icon: "📅", to: "/search?q=saturday" },
+  { id: "morning", label: "Morning", icon: "☀️", to: "/morning" },
+  { id: "evening", label: "Evening", icon: "🌙", to: "/evening" },
 ];
 
 export default function QuickAccess() {

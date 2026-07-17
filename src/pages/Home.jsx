@@ -2,22 +2,20 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import HeroSlider from "../components/HeroSlider";
 import QuickAccess from "../components/QuickAccess";
-import ImageWithFallback from "../components/ImageWithFallback";
+import { getTodaysFeatured, getTodayInfo } from "../data/dailyFeatured";
+import { getDailyReading } from "../data/dailyReading";
 
 export default function Home() {
+  // Weekday-based featured trio (Chalisa / Mantra / Aarti), see dailyFeatured.js
+  const todaysFeatured = getTodaysFeatured();
+  const { dayName, deity } = getTodayInfo();
+  // Ranked "Best for Daily Reading" lists, see dailyReading.js
+  const dailyReading = getDailyReading();
   const categories = [
     { id: "chalisa", name: "Chalisas", icon: "📿", link: "/chalisa", description: "Devotional hymns", color: "amber", iconBg: "bg-amber-100 dark:bg-amber-900/40" },
     { id: "mantra", name: "Mantras", icon: "✨", link: "/mantra", description: "Sacred chants", color: "orange", iconBg: "bg-orange-100 dark:bg-orange-900/40" },
     { id: "aarti", name: "Aartis", icon: "🎵", link: "/aarti", description: "Worship songs", color: "rose", iconBg: "bg-rose-100 dark:bg-rose-900/40" },
     { id: "blog", name: "Blog", icon: "📖", link: "/blog", description: "Spiritual articles", color: "red", iconBg: "bg-red-100 dark:bg-red-900/40" }
-  ];
-
-  // Hand-picked trending items (no trending data source yet), linking straight
-  // to their detail pages. See MOBILE_VIEW_SPEC.md.
-  const trending = [
-    { title: "Shiv Chalisa", meta: "11 min read", icon: "🔱", link: "/chalisa/shiv-chalisa" },
-    { title: "Durga Chalisa", meta: "13 min read", icon: "🦁", link: "/chalisa/durga-chalisa" },
-    { title: "Gayatri Mantra", meta: "8 min read", icon: "🕉️", link: "/mantra/gayatri-mantra" }
   ];
 
   const featuredItems = [
@@ -83,66 +81,111 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Today's Featured */}
+      {/* Today's Featured — weekday devotion trio (Chalisa / Mantra / Aarti) */}
       <section className="w-full pb-10 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="bg-orange-50 dark:bg-gray-800 rounded-2xl p-5 border border-orange-100 dark:border-gray-700">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
               <h2 className="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
                 <span aria-hidden="true">☀️</span> Today's Featured
               </h2>
               <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-900 px-3 py-1 rounded-full border border-orange-200 dark:border-gray-700">
-                Tuesday
+                {dayName}
               </span>
             </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              {dayName} is devoted to {deity}
+            </p>
 
-            <div className="flex gap-4 items-center">
-              <ImageWithFallback
-                src="/assets/hanuman.png"
-                alt="Hanuman Chalisa"
-                className="w-20 h-20 rounded-xl object-cover flex-shrink-0 bg-orange-100 dark:bg-gray-700"
-              />
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Hanuman Chalisa</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Best for courage & protection.</p>
-                <p className="text-xs text-gray-500 dark:text-gray-500">12 min read · हिंदी</p>
-              </div>
-              <Link
-                to="/chalisa/hanuman-chalisa"
-                className="flex-shrink-0 inline-flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
-              >
-                📖 Read
-              </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {todaysFeatured.map((f) => (
+                <Link
+                  key={f.key}
+                  to={f.link}
+                  className="group flex items-center gap-3 bg-white dark:bg-gray-900 rounded-xl p-4 border border-orange-100 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-orange-300 dark:hover:border-orange-500 transition-all"
+                >
+                  <span
+                    className="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-orange-100 to-red-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform"
+                    aria-hidden="true"
+                  >
+                    {f.icon}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[11px] font-semibold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+                      {f.label}
+                    </span>
+                    <span className="block font-bold text-gray-900 dark:text-white leading-snug">
+                      {f.titleHi || f.titleEn}
+                    </span>
+                    {f.titleHi && f.titleEn && (
+                      <span className="block text-xs text-gray-500 dark:text-gray-400 truncate">{f.titleEn}</span>
+                    )}
+                    {!f.exists && (
+                      <span className="block text-xs text-gray-500 dark:text-gray-400">Browse collection →</span>
+                    )}
+                  </span>
+                  <span
+                    className="shrink-0 text-orange-500 group-hover:translate-x-0.5 transition-transform"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trending This Week */}
+      {/* Best for Daily Reading — ranked any-time lists (see dailyReading.js) */}
       <section className="w-full pb-10 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Trending This Week</h2>
-            <Link to="/explorer" className="text-orange-500 hover:text-orange-600 font-semibold text-sm">
-              See All →
-            </Link>
+          <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">
+              📿 Best for Daily Reading
+            </h2>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Any time of day</span>
           </div>
 
-          <div className="flex gap-4 overflow-x-auto pb-2 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-3 md:overflow-visible">
-            {trending.map((item, idx) => (
-              <Link
-                key={idx}
-                to={item.link}
-                className="flex-shrink-0 w-56 md:w-auto flex items-center gap-3 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 transition-all"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {dailyReading.map((list) => (
+              <div
+                key={list.category}
+                className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col"
               >
-                <div className="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-2xl flex-shrink-0" aria-hidden="true">
-                  {item.icon}
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-bold text-gray-900 dark:text-white truncate">{item.title}</h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{item.meta}</p>
-                </div>
-              </Link>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <span aria-hidden="true">{list.icon}</span> {list.heading}
+                </h3>
+                <ol className="space-y-0.5 flex-1">
+                  {list.entries.map((entry, i) => (
+                    <li key={entry.name}>
+                      <Link
+                        to={entry.link}
+                        className="group flex items-center gap-2.5 rounded-lg px-2 py-1.5 hover:bg-orange-50 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <span className="w-5 shrink-0 text-right text-xs font-bold text-orange-500" aria-hidden="true">
+                          {i + 1}.
+                        </span>
+                        <span className="flex-1 min-w-0 text-sm font-medium text-gray-800 dark:text-gray-200 truncate">
+                          {entry.name}
+                        </span>
+                        <span
+                          className={`shrink-0 text-sm transition-opacity ${entry.exists ? "text-orange-500 opacity-0 group-hover:opacity-100" : "text-gray-300 dark:text-gray-600"}`}
+                          aria-hidden="true"
+                        >
+                          →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+                <Link
+                  to={`/${list.route}`}
+                  className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition"
+                >
+                  View all →
+                </Link>
+              </div>
             ))}
           </div>
         </div>
