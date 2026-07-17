@@ -91,7 +91,7 @@ Per-item content lives under `src/i18n/<Category>/<item-slug>/` with one file pe
 src/i18n/
   Chalisa/hanuman-chalisa/{en,hi}.json
   Mantras/gayatri-mantra/{en,hi}.json
-  Aartis/ganesh-aarti/{en,hi}.json
+  Aartis/ganesh-ji-ki-aarti/{en,hi}.json
   content.js          Registry: auto-discovers the folders above via import.meta.glob
 ```
 
@@ -101,6 +101,9 @@ Each `en.json` / `hi.json` has the shape (only `hi` and `en` for now; more langu
 { "title": "", "intro": "", "description": "", "meaning": "",
   "faq": { "q1": "", "a1": "", "q2": "", "a2": "" } }
 ```
+
+`meaning` and `faq` are optional: **Aartis have neither** (title/intro/description only) —
+`DetailPage` hides the Meaning and FAQ sections when the fields are absent.
 
 **To add an item**: create the folder + `en.json`/`hi.json`; it's auto-discovered. Optionally add
 an icon in `ITEM_ICONS` in `i18n/content.js` (otherwise it falls back to the category icon).
