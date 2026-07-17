@@ -158,7 +158,13 @@ export default function DetailPage({ category }) {
             </button>
           </div>
 
-          <p className={`text-gray-800 dark:text-gray-200 leading-loose whitespace-pre-line text-center ${TEXT_SIZES[sizeIdx]}`}>
+          {/* Verse-style categories center the text; longform categories
+              (e.g. Temples) are structured prose and read better left-aligned. */}
+          <p
+            className={`text-gray-800 dark:text-gray-200 whitespace-pre-line ${
+              cat.longform ? "text-left leading-relaxed" : "text-center leading-loose"
+            } ${TEXT_SIZES[sizeIdx]}`}
+          >
             {c.description}
           </p>
         </div>

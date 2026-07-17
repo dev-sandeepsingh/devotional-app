@@ -7,10 +7,11 @@
 // Each item JSON has the shape:
 //   { title, intro, description, meaning, faq: { q1, a1, q2, a2 } }
 // `meaning` and `faq` are optional — Aartis have neither (only title/intro/
-// description); DetailPage hides those sections when the fields are absent.
+// description); Temples have faq but no meaning. DetailPage hides those
+// sections when the fields are absent.
 
 // Eagerly import every <Category>/<slug>/<lang>.json under this folder.
-const modules = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas}/*/*.json", { eager: true });
+const modules = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas,Temples}/*/*.json", { eager: true });
 
 // content[category][slug][lang] = <parsed json>
 const content = {};
@@ -166,6 +167,29 @@ export const CATEGORIES = {
       ],
     },
   },
+  Temples: {
+    route: "temples",
+    heading: "🛕 Temples",
+    subtitle: "Sacred temples of India — history, significance and pilgrimage guide",
+    icon: "🛕",
+    metaTitle: "Famous Temples of India | Devotional",
+    metaDescription: "Explore India's most sacred temples — history, significance, timings and pilgrimage information in Hindi and English.",
+    // Temple descriptions are structured travel-guide prose, not verses —
+    // DetailPage renders them left-aligned instead of centered verse text.
+    longform: true,
+    about: {
+      heading: "Why visit temples?",
+      paragraphs: [
+        "Temples are consecrated spaces where the divine presence is invoked and worshipped daily. Their architecture, rituals and atmosphere are designed to turn the mind inward, toward devotion.",
+        "Pilgrimage to sacred temples has been a cherished tradition for centuries — each temple carries its own history, legends and unique blessings.",
+      ],
+      highlights: [
+        { icon: "🏛️", title: "Sacred Architecture", text: "Temple design channels attention toward the sanctum and the deity within." },
+        { icon: "🚶", title: "Pilgrimage", text: "Journeying to a temple is itself an act of devotion and self-discipline." },
+        { icon: "🔔", title: "Daily Rituals", text: "Aartis, abhishekams and offerings keep the divine presence alive every day." },
+      ],
+    },
+  },
 };
 
 // Optional per-item icon overrides (falls back to the category icon).
@@ -307,6 +331,31 @@ const ITEM_ICONS = {
   "Aartis/naina-devi-mata-ki-aarti": "👁️",
   "Aartis/karni-mata-ki-aarti": "🐀",
   "Aartis/kamakhya-mata-ki-aarti": "🌺",
+  "Temples/ram-janmabhoomi-mandir-ayodhya": "🏹",
+  "Temples/kashi-vishwanath-temple-varanasi": "🔱",
+  "Temples/tirumala-venkateswara-temple-tirupati": "🪷",
+  "Temples/vaishno-devi-temple-katra": "⛰️",
+  "Temples/kedarnath-temple": "🏔️",
+  "Temples/badrinath-temple": "🛕",
+  "Temples/somnath-temple": "🌊",
+  "Temples/mahakaleshwar-jyotirlinga-ujjain": "🔥",
+  "Temples/omkareshwar-jyotirlinga-temple": "🕉️",
+  "Temples/jagannath-temple-puri": "🛞",
+  "Temples/dwarkadhish-temple-dwarka": "🐚",
+  "Temples/ramanathaswamy-temple-rameswaram": "🌉",
+  "Temples/meenakshi-amman-temple-madurai": "🐟",
+  "Temples/siddhivinayak-temple-mumbai": "🐘",
+  "Temples/banke-bihari-temple-vrindavan": "🪈",
+  "Temples/salasar-balaji-temple": "🚩",
+  "Temples/mehandipur-balaji-temple": "🛡️",
+  "Temples/kamakhya-temple-guwahati": "🌺",
+  "Temples/jwala-ji-temple": "🕯️",
+  "Temples/chintpurni-temple": "🌸",
+  "Temples/naina-devi-temple": "👁️",
+  "Temples/shirdi-sai-baba-temple": "🙏",
+  "Temples/khatu-shyam-ji-temple": "🎯",
+  "Temples/prem-mandir-vrindavan": "💗",
+  "Temples/iskcon-krishna-balaram-temple": "🦚",
   "Stotras/devi-mahatmya-stotra": "👑",
   "Stotras/lakshmi-stotra": "💰",
   "Ashtakams/bhramarashtakam": "🧠",
@@ -489,6 +538,46 @@ const CATEGORY_GROUPS = {
       slugs: [
         "khatu-shyam-ji-ki-aarti", "salasar-balaji-ki-aarti", "banke-bihari-ji-ki-aarti",
         "radha-rani-ji-ki-aarti", "jagannath-ji-ki-aarti", "bhairav-baba-ki-aarti",
+      ],
+    },
+  ],
+  Temples: [
+    {
+      title: "Famous Temples of India",
+      slugs: [
+        "ram-janmabhoomi-mandir-ayodhya", "tirumala-venkateswara-temple-tirupati",
+        "shirdi-sai-baba-temple", "siddhivinayak-temple-mumbai",
+        "meenakshi-amman-temple-madurai",
+      ],
+    },
+    {
+      title: "Jyotirlingas",
+      slugs: [
+        "somnath-temple", "mahakaleshwar-jyotirlinga-ujjain",
+        "omkareshwar-jyotirlinga-temple", "kashi-vishwanath-temple-varanasi",
+        "kedarnath-temple", "ramanathaswamy-temple-rameswaram",
+      ],
+    },
+    {
+      title: "Char Dham",
+      slugs: ["badrinath-temple", "jagannath-temple-puri", "dwarkadhish-temple-dwarka"],
+    },
+    {
+      title: "Shakti Peethas & Devi Temples",
+      slugs: [
+        "vaishno-devi-temple-katra", "kamakhya-temple-guwahati", "jwala-ji-temple",
+        "chintpurni-temple", "naina-devi-temple",
+      ],
+    },
+    {
+      title: "Rajasthan's Beloved Temples",
+      slugs: ["khatu-shyam-ji-temple", "salasar-balaji-temple", "mehandipur-balaji-temple"],
+    },
+    {
+      title: "Vrindavan Temples",
+      slugs: [
+        "banke-bihari-temple-vrindavan", "prem-mandir-vrindavan",
+        "iskcon-krishna-balaram-temple",
       ],
     },
   ],

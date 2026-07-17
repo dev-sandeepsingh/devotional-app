@@ -66,9 +66,9 @@ export default function App() {
               <Route path=":slug" element={<DetailPage category={category} />} />
             </Route>
           ))}
-          {/* Category pages (static content — see src/data/categoryContent.js) */}
+          {/* Festivals is still a static page (see src/data/categoryContent.js);
+              Temples moved into the CATEGORIES registry above. */}
           <Route path="/festivals" element={<CategoryPage category="festivals" />} />
-          <Route path="/temples" element={<CategoryPage category="temples" />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />
