@@ -9,7 +9,6 @@ import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DetailPage from "./pages/DetailPage";
-import CategoryPage from "./pages/CategoryPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import Explorer from "./pages/Explorer";
 import Search from "./pages/Search";
@@ -66,9 +65,6 @@ export default function App() {
               <Route path=":slug" element={<DetailPage category={category} />} />
             </Route>
           ))}
-          {/* Festivals is still a static page (see src/data/categoryContent.js);
-              Temples moved into the CATEGORIES registry above. */}
-          <Route path="/festivals" element={<CategoryPage category="festivals" />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />

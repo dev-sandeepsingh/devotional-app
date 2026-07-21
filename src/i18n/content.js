@@ -11,7 +11,7 @@
 // sections when the fields are absent.
 
 // Eagerly import every <Category>/<slug>/<lang>.json under this folder.
-const modules = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas,Temples}/*/*.json", { eager: true });
+const modules = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas,Temples,Festivals}/*/*.json", { eager: true });
 
 // content[category][slug][lang] = <parsed json>
 const content = {};
@@ -187,6 +187,29 @@ export const CATEGORIES = {
         { icon: "🏛️", title: "Sacred Architecture", text: "Temple design channels attention toward the sanctum and the deity within." },
         { icon: "🚶", title: "Pilgrimage", text: "Journeying to a temple is itself an act of devotion and self-discipline." },
         { icon: "🔔", title: "Daily Rituals", text: "Aartis, abhishekams and offerings keep the divine presence alive every day." },
+      ],
+    },
+  },
+  Festivals: {
+    route: "festivals",
+    heading: "📅 Festivals",
+    subtitle: "Celebrations of faith, light and divine grace through the year",
+    icon: "📅",
+    metaTitle: "Hindu Festivals | Devotional",
+    metaDescription: "Explore major Hindu festivals — their significance, rituals, stories and dates in Hindi and English.",
+    // Festival descriptions are structured prose (significance, rituals, puja
+    // vidhi), not verses — DetailPage renders them left-aligned.
+    longform: true,
+    about: {
+      heading: "Why do we celebrate festivals?",
+      paragraphs: [
+        "Hindu festivals mark divine events — the birth of an avatar, the victory of good over evil, or the change of seasons. They bring families and communities together in shared devotion and joy.",
+        "Each festival carries its own rituals, fasts, prayers and stories, keeping ancient traditions alive from generation to generation.",
+      ],
+      highlights: [
+        { icon: "🪔", title: "Light & Joy", text: "Festivals fill homes with lamps, colours, music and festive food." },
+        { icon: "👨‍👩‍👧‍👦", title: "Community", text: "Celebrations bring families and neighbourhoods together in devotion." },
+        { icon: "🔄", title: "Living Tradition", text: "Rituals and stories are passed down through generations each year." },
       ],
     },
   },
@@ -401,6 +424,36 @@ const ITEM_ICONS = {
   "VratKathas/sakat-chauth-vrat-katha": "🌙",
   "VratKathas/shanivar-vrat-katha": "🪐",
   "VratKathas/sawan-vrat-katha": "🌧️",
+  "Festivals/diwali": "🪔",
+  "Festivals/holi": "🎨",
+  "Festivals/navratri": "🗡️",
+  "Festivals/karva-chauth": "💑",
+  "Festivals/janmashtami": "🪈",
+  "Festivals/maha-shivratri": "🔱",
+  "Festivals/ganesh-chaturthi": "🐘",
+  "Festivals/ram-navami": "🏹",
+  "Festivals/raksha-bandhan": "🧵",
+  "Festivals/makar-sankranti": "🪁",
+  "Festivals/vasant-panchami": "📚",
+  "Festivals/dussehra": "🎆",
+  "Festivals/pongal": "🍚",
+  "Festivals/onam": "🌼",
+  "Festivals/ugadi": "🌿",
+  "Festivals/vishu": "🌟",
+  "Festivals/karthigai-deepam": "🕯️",
+  "Festivals/thaipusam": "⚔️",
+  "Festivals/varalakshmi-vratam": "🪷",
+  "Festivals/hanuman-jayanti": "🐒",
+  "Festivals/lohri": "🔥",
+  "Festivals/durga-puja": "🦁",
+  "Festivals/ratha-yatra": "🛞",
+  "Festivals/baisakhi": "🌾",
+  "Festivals/gudi-padwa": "🚩",
+  "Festivals/kali-puja": "🌑",
+  "Festivals/lakshmi-puja": "💰",
+  "Festivals/saraswati-puja": "🦢",
+  "Festivals/rongali-bihu": "🥁",
+  "Festivals/chhath-puja": "☀️",
 };
 
 function iconFor(category, slug) {
