@@ -778,6 +778,7 @@ const BANNERS = {
   "Chalisa/shani-chalisa": "Shani-Chalisa.png",
   "Chalisa/shiv-chalisa": "Shiv-Chalisa.png",
   "Chalisa/vishnu-chalisa": "Vishnu-Chalisa.png",
+  "Mantras/hanuman-mantra": "Hanuman-Chalisa.png",
 };
 
 // Public URL of an item's hero banner, or null when it has no artwork.
