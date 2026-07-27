@@ -4,10 +4,12 @@ Guidance for Claude Code when working in this repository.
 
 ## What this is
 
-A devotional content site (Hanuman Chalisa / Mantra / Aarti / Blog) plus a separate admin
-panel, built as a single React SPA. Stack: **React 19 + Vite + React Router 7 + Tailwind CSS 4
-+ i18next + react-helmet-async**, with **@tanstack/react-query** and **axios** available for
-data fetching.
+A devotional content site (Chalisa / Mantra / Aarti / Stotra / Ashtakam / Sahasranama / Vrat
+Katha / Temple / Festival + Blog) plus a separate admin panel, built as a single React SPA.
+Stack: **React 19 + Vite + React Router 7 + Tailwind CSS 4 + react-helmet-async**. Data
+fetching is plain `fetch` wrapped in `apiFetch` (`src/admin/api.js`) — there is no react-query
+or axios. The devotional content itself is bundled **local JSON** (see below); only the Blog is
+served from the backend API.
 
 ## Commands
 
@@ -26,13 +28,14 @@ There is a **separate backend running locally at `http://localhost:4000`**.
 
 - **Swagger / OpenAPI docs: http://localhost:4000/api/docs** (JSON spec typically at
   `http://localhost:4000/api/docs-json`).
-- **Every page and feature that shows or submits data MUST be driven by the backend API as
-  documented in Swagger — not by hardcoded content.** Before adding or editing a page:
+- **Any feature backed by the API (currently the Blog) MUST use the endpoints as documented in
+  Swagger — not hardcoded content.** Before adding or editing such a page:
   1. Open the Swagger docs and find the endpoint(s) for that page's data.
   2. Use the exact paths, request bodies, query params, and response shapes from the spec.
-  3. Wire the page to those endpoints (fetch/react-query) instead of embedding literal content.
-  Much of the current user-facing content is still hardcoded placeholder text — when you touch
-  a page, migrate it to the real Swagger-documented endpoint.
+  3. Wire the page to those endpoints via `apiFetch` (see below) instead of embedding literal content.
+- **Devotional content (Chalisa/Mantra/Aarti/… items) is deliberately local JSON**, not API-driven
+  — it is bulk-imported from spreadsheets into `src/i18n/<Category>/<slug>/{hi,en}.json` (see the
+  content section). Do not try to move it to the API unless asked.
 - If the spec and this file ever disagree, **the live Swagger spec is the source of truth** —
   follow it and flag the mismatch.
 
