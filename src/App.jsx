@@ -9,10 +9,7 @@ import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DetailPage from "./pages/DetailPage";
-import BlogDetailPage from "./pages/BlogDetailPage";
-import Explorer from "./pages/Explorer";
 import Search from "./pages/Search";
-import Saved from "./pages/Saved";
 import NotFound from "./pages/NotFound";
 import TimeCollectionPage from "./pages/TimeCollectionPage";
 import CategoryListPage from "./components/CategoryListPage";
@@ -52,9 +49,7 @@ export default function App() {
           {/* Curated Morning / Evening collections (Home Quick Access chips) */}
           <Route path="/morning" element={<TimeCollectionPage period="morning" />} />
           <Route path="/evening" element={<TimeCollectionPage period="evening" />} />
-          <Route path="/explorer" element={<Explorer />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/saved" element={<Saved />} />
           {/* Content categories (Chalisa, Mantras, Aartis, Stotras, ...): a list
               page and an item detail page per category, both generated from the
               CATEGORIES registry in src/i18n/content.js. Language (hi/en) on the
@@ -69,11 +64,6 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          {/* Blog Detail Pages (slugs match the links in Blog.jsx) */}
-          <Route path="/blog/power-of-faith" element={<BlogDetailPage slug="power-of-faith" />} />
-          <Route path="/blog/importance-of-hanuman-chalisa" element={<BlogDetailPage slug="importance-of-hanuman-chalisa" />} />
-          <Route path="/blog/mantra-meditation-benefits" element={<BlogDetailPage slug="mantra-meditation-benefits" />} />
-          <Route path="/blog/daily-devotional-guide" element={<BlogDetailPage slug="daily-devotional-guide" />} />
 
           {/* Unknown route → friendly 404 with search (inside the shell so
               the header/nav stay available) */}

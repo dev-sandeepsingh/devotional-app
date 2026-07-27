@@ -109,7 +109,7 @@ const RelatedProducts = memo(function RelatedProducts() {
 
         <div className="p-4 bg-gray-50 dark:bg-gray-600">
           <Link
-            to="/explorer"
+            to="/chalisa"
             className="block w-full text-center bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 dark:from-orange-800 dark:to-red-800 dark:hover:from-orange-900 dark:hover:to-red-900 text-white py-2 rounded-lg font-semibold transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
           >
             Explore More

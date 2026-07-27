@@ -53,9 +53,6 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Explore by Category</h2>
-            <Link to="/explorer" className="text-orange-500 hover:text-orange-600 font-semibold text-sm">
-              See All →
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
