@@ -4,7 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "gen:content": "node scripts/gen-content-index.mjs",
+    "gen:seo": "node scripts/gen-sitemap.mjs",
+    "predev": "node scripts/gen-content-index.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/gen-content-index.mjs && node scripts/gen-sitemap.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

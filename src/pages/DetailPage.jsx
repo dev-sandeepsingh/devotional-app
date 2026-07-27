@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { getItem, getItems, getGroupedItems, getBanner, CATEGORIES } from "../i18n/content";
+import { getItem, getItemMeta, getItems, getGroupedItems, getBanner, CATEGORIES } from "../i18n/content";
 import { recordReading } from "../lib/streak";
 
 // Languages offered by the on-page dropdown. This selects only this page's
@@ -53,17 +53,30 @@ export default function DetailPage({ category }) {
   useEffect(() => localStorage.setItem("readerLang", lang), [lang]);
   useEffect(() => localStorage.setItem("readerTextSize", String(sizeIdx)), [sizeIdx]);
 
-  // Prev/next navigation stays mounted between items, so reset the scroll and
-  // count the reading toward the daily streak on every item change.
+  // Full item content (description / meaning / faq) is loaded lazily from its
+  // own async chunk; metadata (title / intro) is available synchronously so the
+  // page chrome renders immediately while the body loads.
+  const [item, setItem] = useState(null);
+  const meta = getItemMeta(category, slug);
+
+  // Reset scroll on every item change, load the item's full content, and count
+  // a real item toward the daily reading streak once it resolves.
   useEffect(() => {
     window.scrollTo(0, 0);
-    recordReading();
-  }, [slug]);
-
-  const item = getItem(category, slug);
+    let cancelled = false;
+    setItem(null);
+    getItem(category, slug).then((res) => {
+      if (cancelled) return;
+      setItem(res);
+      if (res) recordReading();
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [category, slug]);
 
   // Unknown item → back to the category list.
-  if (!item) return <Navigate to={`/${CATEGORIES[category]?.route || ""}`} replace />;
+  if (!meta) return <Navigate to={`/${CATEGORIES[category]?.route || ""}`} replace />;
 
   // Linear prev/next through the category's list order.
   const items = getItems(category);
@@ -79,9 +92,13 @@ export default function DetailPage({ category }) {
   const related = [];
   for (let k = 1; k <= 3 && k < pool.length; k++) related.push(pool[(poolIdx + k) % pool.length]);
 
-  const c = item[lang] || item.hi || item.en;
-  const faqPairs = toFaqPairs(c.faq);
   const cat = CATEGORIES[category];
+  // Full content once loaded; null while the async chunk is in flight.
+  const c = item ? item[lang] || item.hi || item.en : null;
+  // Title/intro fall back to metadata so the header shows before content loads.
+  const title = c?.title || (lang === "en" ? meta.titleEn || meta.titleHi : meta.titleHi || meta.titleEn);
+  const intro = c?.intro || (lang === "en" ? meta.introEn || meta.introHi : meta.introHi || meta.introEn);
+  const faqPairs = toFaqPairs(c?.faq);
   const banner = getBanner(category, slug);
   // Category display name without its leading emoji, e.g. "📿 Chalisas" → "Chalisas".
   const catLabel = cat.heading.slice(cat.heading.indexOf(" ") + 1);
@@ -89,13 +106,13 @@ export default function DetailPage({ category }) {
   return (
     <article className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>{c.title} | Devotional</title>
-        <meta name="description" content={c.intro} />
+        <title>{title} | Devotional</title>
+        <meta name="description" content={intro} />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <Breadcrumbs
-          crumbs={[{ label: catLabel, to: `/${cat.route}` }, { label: c.title }]}
+          crumbs={[{ label: catLabel, to: `/${cat.route}` }, { label: title }]}
           className="mb-4"
         />
 
@@ -106,7 +123,7 @@ export default function DetailPage({ category }) {
           <div className="mb-6 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10 bg-gray-50 dark:bg-gray-800/50">
             <img
               src={banner}
-              alt={c.title}
+              alt={title}
               loading="lazy"
               className="block w-full h-auto max-h-64 sm:max-h-72 md:max-h-80 object-contain"
             />
@@ -117,8 +134,8 @@ export default function DetailPage({ category }) {
         <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <h1 className="text-xl md:text-2xl font-bold mb-1.5">{item.icon} {c.title}</h1>
-              <p className="text-sm opacity-90">{c.intro}</p>
+              <h1 className="text-xl md:text-2xl font-bold mb-1.5">{meta.icon} {title}</h1>
+              <p className="text-sm opacity-90">{intro}</p>
             </div>
 
             <div
@@ -174,18 +191,31 @@ export default function DetailPage({ category }) {
           </div>
 
           {/* Verse-style categories center the text; longform categories
-              (e.g. Temples) are structured prose and read better left-aligned. */}
-          <p
-            className={`text-gray-800 dark:text-gray-200 whitespace-pre-line ${
-              cat.longform ? "text-left leading-relaxed" : "text-center leading-loose"
-            } ${TEXT_SIZES[sizeIdx]}`}
-          >
-            {c.description}
-          </p>
+              (e.g. Temples) are structured prose and read better left-aligned.
+              While the content chunk loads, show a shimmer placeholder. */}
+          {c ? (
+            <p
+              className={`text-gray-800 dark:text-gray-200 whitespace-pre-line ${
+                cat.longform ? "text-left leading-relaxed" : "text-center leading-loose"
+              } ${TEXT_SIZES[sizeIdx]}`}
+            >
+              {c.description}
+            </p>
+          ) : (
+            <div className="animate-pulse space-y-3" aria-hidden="true">
+              {[70, 85, 60, 90, 75, 80, 55, 88].map((w, i) => (
+                <div
+                  key={i}
+                  className="h-4 rounded bg-gray-200 dark:bg-gray-700 mx-auto"
+                  style={{ width: `${w}%` }}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Meaning & Explanation */}
-        {c.meaning && (
+        {c?.meaning && (
           <CollapsibleSection icon="📚" title="Meaning & Explanation" defaultOpen={false}>
             <p className={`text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line ${TEXT_SIZES[sizeIdx]}`}>
               {c.meaning}
@@ -212,7 +242,7 @@ export default function DetailPage({ category }) {
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             Spread the spiritual wisdom by sharing this sacred text with friends and family
           </p>
-          <ShareButtons url={window.location.href} title={c.title} />
+          <ShareButtons url={window.location.href} title={title} />
         </CollapsibleSection>
 
         {/* Previous / next item in this category */}

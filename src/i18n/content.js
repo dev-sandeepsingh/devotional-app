@@ -10,19 +10,17 @@
 // description); Temples have faq but no meaning. DetailPage hides those
 // sections when the fields are absent.
 
-// Eagerly import every <Category>/<slug>/<lang>.json under this folder.
-const modules = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas,Temples,Festivals}/*/*.json", { eager: true });
+// Lightweight metadata (title + intro per language) for every item, generated
+// by scripts/gen-content-index.mjs into contentIndex.js. List pages and search
+// only need this — so META[category][slug] = { titleHi, titleEn, introHi, introEn }
+// is the only content bundled up front (~150 KB), not the full ~3.8 MB of text.
+import META from "./contentIndex.js";
 
-// content[category][slug][lang] = <parsed json>
-const content = {};
-for (const path in modules) {
-  // path e.g. "./Chalisa/hanuman-chalisa/en.json"
-  const [, category, slug, file] = path.split("/");
-  const lang = file.replace(".json", "");
-  (content[category] ??= {});
-  (content[category][slug] ??= {});
-  content[category][slug][lang] = modules[path].default;
-}
+// Full item content (title/intro/description/meaning/faq) is loaded on demand,
+// one item at a time, by getItem below. Each JSON is only *dynamically* imported
+// here, so Vite splits every item into its own async chunk kept out of the
+// initial download. Keyed by path e.g. "./Chalisa/hanuman-chalisa/en.json".
+const CONTENT_LOADERS = import.meta.glob("./{Chalisa,Mantras,Aartis,Stotras,Ashtakams,Sahasranamas,VratKathas,Temples,Festivals}/*/*.json");
 
 // Display metadata per category. Everything a category's list page needs lives
 // here: URL segment, header copy, <head> meta, and the "about" section shown
@@ -478,16 +476,16 @@ function iconFor(category, slug) {
 }
 
 // Bilingual single-line card title, e.g. "श्री हनुमान चालीसा (Hanuman Chalisa)".
-function cardTitle(item) {
-  const hi = item.hi?.title;
-  const en = item.en?.title;
+function cardTitle(meta) {
+  const hi = meta.titleHi;
+  const en = meta.titleEn;
   if (hi && en) return `${hi} (${en})`;
   return hi || en || "";
 }
 
 // Items for a category's list page (Hanuman items surface first).
 export function getItems(category) {
-  const group = content[category] || {};
+  const group = META[category] || {};
   return Object.keys(group)
     .sort((a, b) => {
       const ah = a.startsWith("hanuman") ? 0 : 1;
@@ -499,10 +497,10 @@ export function getItems(category) {
       icon: iconFor(category, slug),
       cardTitle: cardTitle(group[slug]),
       // Separate scripts so cards can show Hindi prominently with English below.
-      titleHi: group[slug].hi?.title || "",
-      titleEn: group[slug].en?.title || "",
+      titleHi: group[slug].titleHi || "",
+      titleEn: group[slug].titleEn || "",
       // Short English intro for the card (falls back to Hindi).
-      intro: group[slug].en?.intro || group[slug].hi?.intro || "",
+      intro: group[slug].introEn || group[slug].introHi || "",
     }));
 }
 
@@ -715,17 +713,17 @@ export function getGroupedItems(category) {
 
 // Flat index of every item across all categories, for site search.
 // haystack = everything a query can match against, lowercased.
-const SEARCH_INDEX = Object.entries(content).flatMap(([category, group]) =>
+const SEARCH_INDEX = Object.entries(META).flatMap(([category, group]) =>
   Object.keys(group).map((slug) => {
-    const item = group[slug];
+    const meta = group[slug];
     return {
       category,
       slug,
       path: `/${CATEGORIES[category]?.route}/${slug}`,
       icon: iconFor(category, slug),
-      cardTitle: cardTitle(item),
-      intro: item.en?.intro || item.hi?.intro || "",
-      haystack: [item.hi?.title, item.en?.title, slug.replace(/-/g, " "), category]
+      cardTitle: cardTitle(meta),
+      intro: meta.introEn || meta.introHi || "",
+      haystack: [meta.titleHi, meta.titleEn, slug.replace(/-/g, " "), category]
         .filter(Boolean)
         .join(" ")
         .toLowerCase(),
@@ -749,11 +747,25 @@ export function searchItems(query, limit = 8) {
     .slice(0, limit);
 }
 
-// A single item's content for the detail page, or null if unknown.
-export function getItem(category, slug) {
-  const item = content[category]?.[slug];
-  if (!item) return null;
-  return { slug, icon: iconFor(category, slug), en: item.en, hi: item.hi };
+// An item's list/header metadata (title + intro per language), synchronously,
+// or null if the item doesn't exist. Lets the detail page render its title,
+// breadcrumb and header instantly while the full content loads.
+export function getItemMeta(category, slug) {
+  const meta = META[category]?.[slug];
+  if (!meta) return null;
+  return { slug, icon: iconFor(category, slug), ...meta };
+}
+
+// A single item's full content for the detail page, lazy-loaded (the JSON lives
+// in its own async chunk). Resolves to { slug, icon, en, hi } or null if unknown.
+export async function getItem(category, slug) {
+  if (!META[category]?.[slug]) return null;
+  const load = (lang) => {
+    const loader = CONTENT_LOADERS[`./${category}/${slug}/${lang}.json`];
+    return loader ? loader().then((mod) => mod.default) : Promise.resolve(undefined);
+  };
+  const [en, hi] = await Promise.all([load("en"), load("hi")]);
+  return { slug, icon: iconFor(category, slug), en, hi };
 }
 
 // Detail-page hero images. Files live in public/assets/banners and are served

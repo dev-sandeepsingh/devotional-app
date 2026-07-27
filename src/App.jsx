@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserShell from "./UserShell";
 
@@ -15,12 +15,14 @@ import TimeCollectionPage from "./pages/TimeCollectionPage";
 import CategoryListPage from "./components/CategoryListPage";
 import { CATEGORIES } from "./i18n/content";
 
-// Admin panel (separate from the user site; not linked anywhere on the site)
-import AdminLogin from "./admin/AdminLogin";
-import RequireAdmin from "./admin/RequireAdmin";
-import AdminLayout from "./admin/AdminLayout";
-import AdminHome from "./admin/AdminHome";
-import AdminBlogs from "./admin/AdminBlogs";
+// Admin panel is never used by public visitors, so it's split into its own
+// lazily-loaded chunks (keeps the rich-text editor and admin views out of the
+// initial download).
+const AdminLogin = lazy(() => import("./admin/AdminLogin"));
+const RequireAdmin = lazy(() => import("./admin/RequireAdmin"));
+const AdminLayout = lazy(() => import("./admin/AdminLayout"));
+const AdminHome = lazy(() => import("./admin/AdminHome"));
+const AdminBlogs = lazy(() => import("./admin/AdminBlogs"));
 
 export default function App() {
   useEffect(() => {
@@ -33,6 +35,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Suspense fallback={<div className="min-h-screen bg-gray-100" />}>
       <Routes>
         {/* Admin panel — no user shell, no links from the public site */}
         <Route path="/adminLogin" element={<AdminLogin />} />
@@ -70,6 +73,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
