@@ -755,3 +755,33 @@ export function getItem(category, slug) {
   if (!item) return null;
   return { slug, icon: iconFor(category, slug), en: item.en, hi: item.hi };
 }
+
+// Detail-page hero images. Files live in public/assets/banners and are served
+// at /assets/banners/<file>. Only some items have artwork, so this map is
+// explicit (keyed by "<Category>/<slug>") — DetailPage shows the banner only
+// when an entry exists. Add a new banner by dropping the file in and mapping it
+// here. Note the file name doesn't always match the slug (e.g. Khatushyamji).
+const BANNERS = {
+  "Chalisa/balaji-chalisa": "Balaji-Chalisa.png",
+  "Chalisa/bhairav-chalisa": "Bhairav-Chalisa.png",
+  "Chalisa/brahma-chalisa": "Brahma-Chalisa.png",
+  "Chalisa/durga-chalisa": "Durga-Chalisa.png",
+  "Chalisa/ganesh-chalisa": "Ganesh-Chalisa.png",
+  "Chalisa/hanuman-chalisa": "Hanuman-Chalisa.png",
+  "Chalisa/kali-chalisa": "Kali-Chalisa.png",
+  "Chalisa/khatu-shyam-chalisa": "Khatushyamji-Chalisa.png",
+  "Chalisa/krishna-chalisa": "Krishna-Chalisa.png",
+  "Chalisa/kuber-chalisa": "Kuber-Chalisa.png",
+  "Chalisa/mahakali-chalisa": "Mahakali-Chalisa.png",
+  "Chalisa/radha-chalisa": "Radha-Chalisa.png",
+  "Chalisa/santoshi-chalisa": "Santoshi-Chalisa.png",
+  "Chalisa/shani-chalisa": "Shani-Chalisa.png",
+  "Chalisa/shiv-chalisa": "Shiv-Chalisa.png",
+  "Chalisa/vishnu-chalisa": "Vishnu-Chalisa.png",
+};
+
+// Public URL of an item's hero banner, or null when it has no artwork.
+export function getBanner(category, slug) {
+  const file = BANNERS[`${category}/${slug}`];
+  return file ? `/assets/banners/${file}` : null;
+}

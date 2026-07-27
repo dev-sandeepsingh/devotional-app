@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import ShareButtons from "../components/ShareButtons";
 import CollapsibleSection from "../components/CollapsibleSection";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { getItem, getItems, getGroupedItems, CATEGORIES } from "../i18n/content";
+import { getItem, getItems, getGroupedItems, getBanner, CATEGORIES } from "../i18n/content";
 import { recordReading } from "../lib/streak";
 
 // Languages offered by the on-page dropdown. This selects only this page's
@@ -82,6 +82,7 @@ export default function DetailPage({ category }) {
   const c = item[lang] || item.hi || item.en;
   const faqPairs = toFaqPairs(c.faq);
   const cat = CATEGORIES[category];
+  const banner = getBanner(category, slug);
   // Category display name without its leading emoji, e.g. "📿 Chalisas" → "Chalisas".
   const catLabel = cat.heading.slice(cat.heading.indexOf(" ") + 1);
 
@@ -97,6 +98,20 @@ export default function DetailPage({ category }) {
           crumbs={[{ label: catLabel, to: `/${cat.route}` }, { label: c.title }]}
           className="mb-4"
         />
+
+        {/* Hero banner — only shown for items that have artwork (see getBanner).
+            Full width, but height capped so it stays a tidy size; object-contain
+            keeps the whole image visible (never cropped) within that height. */}
+        {banner && (
+          <div className="mb-6 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10 bg-gray-50 dark:bg-gray-800/50">
+            <img
+              src={banner}
+              alt={c.title}
+              loading="lazy"
+              className="block w-full h-auto max-h-64 sm:max-h-72 md:max-h-80 object-contain"
+            />
+          </div>
+        )}
 
         {/* Header with on-page language dropdown */}
         <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl p-4 mb-6 shadow-lg">
@@ -171,7 +186,7 @@ export default function DetailPage({ category }) {
 
         {/* Meaning & Explanation */}
         {c.meaning && (
-          <CollapsibleSection icon="📚" title="Meaning & Explanation" defaultOpen={true}>
+          <CollapsibleSection icon="📚" title="Meaning & Explanation" defaultOpen={false}>
             <p className={`text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line ${TEXT_SIZES[sizeIdx]}`}>
               {c.meaning}
             </p>
