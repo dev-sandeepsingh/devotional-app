@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { blogsApi } from "../admin/api";
+import { stripHtml, sanitizeHtml } from "../utils/richText";
 
 // A small set of icons + gradient accents so the API-driven cards (which carry
 // no imagery of their own) still feel varied. Picked deterministically by index.
@@ -25,7 +26,7 @@ function formatDate(iso) {
 
 // Rough reading time from the description word count (~200 wpm).
 function readTime(text) {
-  const words = (text || "").trim().split(/\s+/).filter(Boolean).length;
+  const words = stripHtml(text).split(/\s+/).filter(Boolean).length;
   return `${Math.max(1, Math.round(words / 200))} min read`;
 }
 
@@ -138,7 +139,7 @@ export default function Blog() {
                     </h3>
 
                     <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                      {post.description}
+                      {stripHtml(post.description)}
                     </p>
 
                     <span className="mt-auto inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold group-hover:translate-x-1 transition">
@@ -204,9 +205,10 @@ export default function Blog() {
             </div>
 
             <div className="p-6 overflow-y-auto">
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-                {active.description}
-              </p>
+              <div
+                className="rich-text text-gray-700 dark:text-gray-300 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(active.description) }}
+              />
             </div>
           </article>
         </div>

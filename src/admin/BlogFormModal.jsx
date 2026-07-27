@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 import { blogsApi } from "./api";
+import RichTextEditor from "./RichTextEditor";
+
+// Does the rich text HTML contain any actual text/content (vs. empty tags)?
+function hasContent(html) {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim().length > 0;
+}
 
 // Handles both creating a new blog and editing an existing one.
 // Pass `blog` to edit; omit it to create.
@@ -28,6 +34,10 @@ export default function BlogFormModal({ blog, onClose, onSaved }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    if (!hasContent(form.description)) {
+      setError("Description is required.");
+      return;
+    }
     setSaving(true);
     const payload = {
       title: form.title.trim(),
@@ -84,10 +94,11 @@ export default function BlogFormModal({ blog, onClose, onSaved }) {
 
           <div>
             <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-            <textarea
-              id="description" name="description" rows={5} required
-              value={form.description} onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500 resize-y"
+            <RichTextEditor
+              id="description"
+              value={form.description}
+              onChange={(html) => setForm((p) => ({ ...p, description: html }))}
+              placeholder="Write the blog content… use the toolbar for bold, headings and lists."
             />
           </div>
 

@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { blogsApi } from "./api";
 import BlogFormModal from "./BlogFormModal";
 import ConfirmDialog from "./ConfirmDialog";
+import { stripHtml } from "../utils/richText";
 
 function formatDate(iso) {
   if (!iso) return "—";
@@ -109,7 +110,7 @@ export default function AdminBlogs() {
               {blogs.map((b) => (
                 <tr key={b.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-gray-800">{b.title}</td>
-                  <td className="px-4 py-3 text-gray-600 hidden md:table-cell max-w-md truncate">{b.description}</td>
+                  <td className="px-4 py-3 text-gray-600 hidden md:table-cell max-w-md truncate">{stripHtml(b.description)}</td>
                   <td className="px-4 py-3">
                     <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                       b.isActive ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
