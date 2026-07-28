@@ -8,11 +8,15 @@ import Blog from "./pages/Blog";
 import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Disclaimer from "./pages/Disclaimer";
+import ScripturalAccuracy from "./pages/ScripturalAccuracy";
+import Terms from "./pages/Terms";
 import DetailPage from "./pages/DetailPage";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import TimeCollectionPage from "./pages/TimeCollectionPage";
 import CategoryListPage from "./components/CategoryListPage";
+import ScrollToTop from "./components/ScrollToTop";
 import { CATEGORIES } from "./i18n/content";
 
 // Admin panel is never used by public visitors, so it's split into its own
@@ -35,6 +39,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Suspense fallback={<div className="min-h-screen bg-gray-100" />}>
       <Routes>
         {/* Admin panel — no user shell, no links from the public site */}
@@ -67,6 +72,9 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/scriptural-accuracy" element={<ScripturalAccuracy />} />
+          <Route path="/terms" element={<Terms />} />
 
           {/* Unknown route → friendly 404 with search (inside the shell so
               the header/nav stay available) */}

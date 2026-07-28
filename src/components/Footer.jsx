@@ -26,6 +26,9 @@ export default function Footer() {
               <li><Link to="/donate" className="hover:text-white transition">Donate</Link></li>
               <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
               <li><Link to="/about" className="hover:text-white transition">About Us</Link></li>
+              <li><Link to="/disclaimer" className="hover:text-white transition">Disclaimer</Link></li>
+              <li><Link to="/scriptural-accuracy" className="hover:text-white transition">Scriptural Accuracy</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition">Terms of Use</Link></li>
             </ul>
           </div>
           
@@ -40,6 +43,14 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 pt-8">
+          {/* Legal & devotional notices */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-4 text-sm">
+            <Link to="/disclaimer" className="text-gray-400 hover:text-white transition">Disclaimer &amp; Devotional Notice</Link>
+            <span className="text-gray-600" aria-hidden="true">•</span>
+            <Link to="/scriptural-accuracy" className="text-gray-400 hover:text-white transition">Scriptural Accuracy &amp; Correction Notice</Link>
+            <span className="text-gray-600" aria-hidden="true">•</span>
+            <Link to="/terms" className="text-gray-400 hover:text-white transition">Terms of Use &amp; Copyright Notice</Link>
+          </div>
           <p className="text-center text-gray-400">© 2026 Devotional Site | Powered by 62 West Studio</p>
         </div>
       </div>

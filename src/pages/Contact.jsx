@@ -1,20 +1,52 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 
-const CONTACT_EMAIL = "hello@devotional.example";
+const CONTACT_EMAIL = "thechalisacom@gmail.com";
+
+// Free form-to-email relay (no backend needed). Create a key at https://web3forms.com
+// using thechalisacom@gmail.com, then paste it below — submissions are emailed there.
+// This key is SAFE to expose in frontend code; it only sends to that verified address.
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "", botcheck: false });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // No backend yet — show a confirmation. Wire this to an email/API service when available.
-    setSubmitted(true);
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          from_name: "TheChalisa.com Contact Form",
+          subject: form.subject || `New message from ${form.name || "a visitor"}`,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          botcheck: form.botcheck, // honeypot — real users leave this untouched
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMsg(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error — please check your connection and try again.");
+    }
   };
 
   const channels = [
@@ -60,15 +92,15 @@ export default function Contact() {
           {/* Form */}
           <section className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
-              {submitted ? (
+              {status === "success" ? (
                 <div className="text-center py-12">
                   <div className="text-5xl mb-4" aria-hidden="true">🙏</div>
                   <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Thank you, {form.name || "friend"}!</h2>
                   <p className="text-gray-600 dark:text-gray-300 mb-6">
-                    Your message has been received. We'll get back to you soon.
+                    Your message has been sent to our team. We'll get back to you soon.
                   </p>
                   <button
-                    onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }}
+                    onClick={() => { setStatus("idle"); setForm({ name: "", email: "", subject: "", message: "", botcheck: false }); }}
                     className="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                   >
                     Send another message
@@ -111,11 +143,30 @@ export default function Contact() {
                     />
                   </div>
 
+                  {/* Honeypot — hidden from real users; bots that tick it are rejected */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    checked={form.botcheck}
+                    onChange={handleChange}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
+                  {status === "error" && (
+                    <p className="text-sm font-medium text-red-600 dark:text-red-400" role="alert">
+                      {errorMsg}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    disabled={status === "sending"}
+                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {status === "sending" ? "Sending…" : "Send Message"}
                   </button>
                 </form>
               )}

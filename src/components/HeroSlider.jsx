@@ -4,28 +4,36 @@ import ImageWithFallback from "./ImageWithFallback";
 
 const SLIDES = [
   {
-    image: "/assets/hanuman1.png",
-    kicker: "🚩 आज का पाठ",
-    title: "जय श्री राम",
-    subtitle: "भक्ति से ही मुक्ति मिलती है",
-    cta: "हनुमान चालीसा पढ़ें",
-    link: "/chalisa/hanuman-chalisa",
-  },
-  {
-    image: "/assets/hanuman2.png",
+    image: "/assets/homepage_logo/hanuman.jpg",
     kicker: "🙏 Daily Devotion",
     title: "Lord Hanuman",
     subtitle: "Strength, courage, and devotion",
     cta: "Read Hanuman Chalisa",
-    link: "/chalisa",
+    link: "/chalisa/hanuman-chalisa",
   },
   {
-    image: "/assets/hanuman3.png",
-    kicker: "✨ Begin Your Journey",
-    title: "Devotional Journey",
-    subtitle: "Explore chants, mantras & aartis",
-    cta: "Explore Mantras",
-    link: "/mantra",
+    image: "/assets/homepage_logo/ram.jpg",
+    kicker: "🚩 जय श्री राम",
+    title: "Lord Rama",
+    subtitle: "मर्यादा पुरुषोत्तम श्री राम",
+    cta: "Read Ram Chalisa",
+    link: "/chalisa/ram-chalisa",
+  },
+  {
+    image: "/assets/homepage_logo/shiv.jpg",
+    kicker: "🕉️ Har Har Mahadev",
+    title: "Lord Shiva",
+    subtitle: "The auspicious one, destroyer of evil",
+    cta: "Read Shiv Chalisa",
+    link: "/chalisa/shiv-chalisa",
+  },
+  {
+    image: "/assets/homepage_logo/durga-avtar.jpg",
+    kicker: "✨ Jai Mata Di",
+    title: "Maa Durga",
+    subtitle: "Divine strength and protection",
+    cta: "Read Durga Chalisa",
+    link: "/chalisa/durga-chalisa",
   },
 ];
 

@@ -104,7 +104,7 @@ export default function AdminHome() {
         <StatCard icon="📝" label="Total Blogs" value={total} accent="from-orange-500 to-red-500" to="/admin/blogs" cta="Manage blogs" />
         <StatCard icon="✅" label="Published" value={published} accent="from-green-500 to-emerald-500" />
         <StatCard icon="📄" label="Drafts" value={drafts} accent="from-amber-500 to-yellow-500" />
-        <StatCard icon="🌐" label="Languages" value="8+" accent="from-sky-500 to-indigo-500" />
+        <StatCard icon="🌐" label="Languages" value="2" accent="from-sky-500 to-indigo-500" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
