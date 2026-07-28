@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 export default function Donate() {
@@ -8,6 +8,20 @@ export default function Donate() {
   const UPI_ID = "mandhirbath62@okicici";
   const [imgOk, setImgOk] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+
+  // Close the zoom overlay on Escape and lock body scroll while it's open.
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e) => e.key === "Escape" && setZoomed(false);
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [zoomed]);
   const copyUpi = async () => {
     try {
       await navigator.clipboard.writeText(UPI_ID);
@@ -109,7 +123,9 @@ export default function Donate() {
                       <img
                         src={QR_SRC}
                         alt="Scan this UPI QR code to donate"
-                        className="block w-full h-auto"
+                        className="block w-full h-auto cursor-zoom-in"
+                        onClick={() => setZoomed(true)}
+                        title="Tap to enlarge"
                         onError={() => setImgOk(false)}
                       />
                     ) : (
@@ -201,6 +217,31 @@ export default function Donate() {
           </div>
         </section>
       </section>
+
+      {/* Zoomed scanner overlay — click anywhere or the close button to restore */}
+      {zoomed && imgOk && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 cursor-zoom-out"
+          onClick={() => setZoomed(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged UPI QR code"
+        >
+          <button
+            onClick={() => setZoomed(false)}
+            aria-label="Close enlarged QR code"
+            className="absolute top-4 right-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          <img
+            src={QR_SRC}
+            alt="Enlarged UPI QR code — scan to donate"
+            className="max-w-full max-h-[90vh] w-auto h-auto rounded-2xl bg-white p-2 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

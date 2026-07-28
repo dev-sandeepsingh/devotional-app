@@ -694,6 +694,136 @@ const CATEGORY_GROUPS = {
       ],
     },
   ],
+  Stotras: [
+    {
+      title: "Shiva Stotras",
+      slugs: [
+        "shiva-mahimna-stotram", "shiva-tandava-stotram", "shri-rudrashtakam",
+        "shri-lingashtakam", "shri-bilvashtakam", "shri-kaal-bhairav-ashtakam",
+        "shri-nirvana-shatakam",
+      ],
+    },
+    {
+      title: "Devi & Shakti Stotras",
+      slugs: [
+        "devi-mahatmya-stotra", "lalita-sahasranama-stotram", "shri-devi-kavacham",
+        "shri-durga-saptashloki", "shri-argala-stotram",
+      ],
+    },
+    {
+      title: "Vishnu, Rama & Lakshmi Stotras",
+      slugs: [
+        "vishnu-sahasranama-stotram", "narayana-kavacham", "rama-raksha-stotram",
+        "lakshmi-stotra", "kanakadhara-stotram",
+      ],
+    },
+    {
+      title: "Hanuman Stotras",
+      slugs: ["sankatmochan-hanuman-ashtak", "bajrang-baan"],
+    },
+    {
+      title: "Ganesha & Surya Stotras",
+      slugs: ["ganapati-atharvashirsha", "aditya-hridaya-stotram"],
+    },
+  ],
+  Ashtakams: [
+    {
+      title: "Shiva Ashtakams",
+      slugs: ["shiva-ashtakam", "rudrashtakam", "bilvashtakam", "shankarashtakam"],
+    },
+    {
+      title: "Vishnu & Krishna Ashtakams",
+      slugs: [
+        "krishna-ashtakam", "madhurashtakam", "achyutashtakam",
+        "jagannathashtakam", "narasimha-ashtakam",
+      ],
+    },
+    {
+      title: "Devi, Lakshmi & Saraswati Ashtakams",
+      slugs: [
+        "mahalakshmi-ashtakam", "durga-ashtakam", "bhavani-ashtakam",
+        "lalita-ashtakam", "annapurna-ashtakam", "saraswati-ashtakam",
+      ],
+    },
+    {
+      title: "Ganesha, Surya & More",
+      slugs: ["ganesha-ashtakam", "surya-ashtakam", "brahma-ashtakam", "ganga-ashtakam"],
+    },
+  ],
+  Sahasranamas: [
+    {
+      title: "Vishnu & Avatars",
+      slugs: ["vishnu-sahasranama", "krishna-sahasranamam", "narasimha-sahasranamam"],
+    },
+    {
+      title: "Shiva, Hanuman & Shakti",
+      slugs: [
+        "shiva-sahasranamam", "hanuman-sahasranamam", "devi-sahasranama",
+        "durga-sahasranamam",
+      ],
+    },
+    {
+      title: "Lakshmi, Ganesha & Gayatri",
+      slugs: ["lakshmi-sahasranamam", "ganesha-sahasranamam", "gayatri-sahasranamam"],
+    },
+  ],
+  VratKathas: [
+    {
+      title: "Popular Vrat Kathas",
+      slugs: [
+        "karva-chauth-vrat-katha", "satyanarayan-vrat-katha", "navratri-vrat-katha",
+        "maha-shivratri-vrat-katha", "ekadashi-vrat-katha", "vaibhav-lakshmi-vrat-katha",
+        "santoshi-mata-vrat-katha-vidhi",
+      ],
+    },
+    {
+      title: "Shiva Vrats",
+      slugs: ["solah-somvar-vrat-katha", "sawan-vrat-katha", "pradosh-vrat-katha"],
+    },
+    {
+      title: "Ganesha Vrats",
+      slugs: [
+        "sankashti-chaturthi-vrat-katha", "sakat-chauth-vrat-katha",
+        "ganesh-chaturthi-vrat-katha",
+      ],
+    },
+    {
+      title: "Devi & Teej Vrats",
+      slugs: ["teej-vrat-katha", "hartalika-teej-vrat-katha", "ahoi-ashtami-vrat-katha"],
+    },
+    {
+      title: "Weekday & River Vrats",
+      slugs: ["guruvar-vrat-katha", "shanivar-vrat-katha", "ganga-dussehra-vrat-katha"],
+    },
+  ],
+  Festivals: [
+    {
+      title: "Major Festivals",
+      slugs: [
+        "diwali", "holi", "navratri", "dussehra", "ganesh-chaturthi",
+        "janmashtami", "maha-shivratri", "ram-navami", "raksha-bandhan",
+        "hanuman-jayanti",
+      ],
+    },
+    {
+      title: "Devi & Deity Pujas",
+      slugs: [
+        "durga-puja", "kali-puja", "lakshmi-puja", "saraswati-puja",
+        "vasant-panchami", "varalakshmi-vratam", "karva-chauth", "ratha-yatra",
+      ],
+    },
+    {
+      title: "Harvest Festivals",
+      slugs: [
+        "makar-sankranti", "pongal", "lohri", "baisakhi", "onam",
+        "rongali-bihu", "chhath-puja",
+      ],
+    },
+    {
+      title: "New Year & South Indian Festivals",
+      slugs: ["ugadi", "gudi-padwa", "vishu", "thaipusam", "karthigai-deepam"],
+    },
+  ],
 };
 
 // Items for a category's list page, arranged into named sections when the
