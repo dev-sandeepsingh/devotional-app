@@ -12,10 +12,10 @@ export default function Home() {
   // Ranked "Best for Daily Reading" lists, see dailyReading.js
   const dailyReading = getDailyReading();
   const categories = [
-    { id: "chalisa", name: "Chalisas", icon: "📿", link: "/chalisa", description: "Devotional hymns", color: "amber", iconBg: "bg-amber-100 dark:bg-amber-900/40" },
-    { id: "mantra", name: "Mantras", icon: "✨", link: "/mantra", description: "Sacred chants", color: "orange", iconBg: "bg-orange-100 dark:bg-orange-900/40" },
-    { id: "aarti", name: "Aartis", icon: "🎵", link: "/aarti", description: "Worship songs", color: "rose", iconBg: "bg-rose-100 dark:bg-rose-900/40" },
-    { id: "blog", name: "Blog", icon: "📖", link: "/blog", description: "Spiritual articles", color: "red", iconBg: "bg-red-100 dark:bg-red-900/40" }
+    { id: "chalisa", name: "Chalisas", nameHi: "चालीसा", icon: "📿", link: "/chalisa", description: "Devotional hymns", color: "amber", iconBg: "bg-amber-100 dark:bg-amber-900/40" },
+    { id: "mantra", name: "Mantras", nameHi: "मंत्र", icon: "✨", link: "/mantra", description: "Sacred chants", color: "orange", iconBg: "bg-orange-100 dark:bg-orange-900/40" },
+    { id: "aarti", name: "Aartis", nameHi: "आरती", icon: "🎵", link: "/aarti", description: "Worship songs", color: "rose", iconBg: "bg-rose-100 dark:bg-rose-900/40" },
+    { id: "blog", name: "Blog", nameHi: "ब्लॉग", icon: "📖", link: "/blog", description: "Spiritual articles", color: "red", iconBg: "bg-red-100 dark:bg-red-900/40" }
   ];
 
   const featuredItems = [
@@ -68,6 +68,7 @@ export default function Home() {
                 <h3 className="text-base font-bold text-gray-800 dark:text-white group-hover:text-orange-500 transition">
                   {cat.name}
                 </h3>
+                <p lang="hi" className="text-sm font-semibold text-orange-600 dark:text-orange-400">{cat.nameHi}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{cat.description}</p>
                 <span className="absolute bottom-4 right-4 w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm group-hover:translate-x-0.5 transition-transform" aria-hidden="true">
                   →
