@@ -922,6 +922,7 @@ const BANNERS = {
   "Chalisa/khatu-shyam-chalisa": "Khatushyamji-Chalisa.png",
   "Chalisa/krishna-chalisa": "Krishna-Chalisa.png",
   "Chalisa/kuber-chalisa": "Kuber-Chalisa.png",
+  "Chalisa/ram-chalisa": "Ram-Chalisa.jpg",
   "Chalisa/mahakali-chalisa": "Mahakali-Chalisa.png",
   "Chalisa/radha-chalisa": "Radha-Chalisa.png",
   "Chalisa/santoshi-chalisa": "Santoshi-Chalisa.png",
