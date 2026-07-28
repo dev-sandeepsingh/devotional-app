@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold mb-4 text-[#c65f75]">🙏 Devotional</h3>
-            <p className="text-gray-400">Explore spiritual content in multiple languages</p>
+            <p className="text-gray-400">Explore spiritual content in Hindi &amp; English</p>
           </div>
           
           <div>

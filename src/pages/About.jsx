@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   const values = [
-    { icon: "🌍", title: "Accessible to All", text: "Free devotional content in 8+ languages so everyone can connect with their faith." },
+    { icon: "🌍", title: "Accessible to All", text: "Free devotional content in Hindi and English — with more Indian languages coming soon." },
     { icon: "📿", title: "Authentic Content", text: "Chalisas, mantras, and aartis presented with meaning and context, not just text." },
     { icon: "🧘", title: "Peace & Devotion", text: "A calm, ad-free space to read, reflect, and deepen your spiritual practice." },
     { icon: "💛", title: "Community Supported", text: "Sustained by devotees like you, so the platform stays free for everyone." },
@@ -11,7 +11,7 @@ export default function About() {
 
   const stats = [
     { value: "1,240+", label: "Content Items" },
-    { value: "8+", label: "Languages" },
+    { value: "2", label: "Languages · more soon" },
     { value: "200K+", label: "Monthly Readers" },
     { value: "100%", label: "Free & Ad-free" },
   ];
@@ -20,7 +20,7 @@ export default function About() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
         <title>About Us | Devotional</title>
-        <meta name="description" content="Learn about our mission to make devotional content freely accessible in multiple languages." />
+        <meta name="description" content="Learn about our mission to make devotional content freely accessible in Hindi and English." />
       </Helmet>
 
       {/* Header */}
@@ -43,8 +43,8 @@ export default function About() {
             their faith — without paywalls, distractions, or advertisements.
           </p>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Every piece of content is presented with its meaning and explanation, and made available across many
-            Indian languages, so devotion is never lost in translation.
+            Every piece of content is presented with its meaning and explanation, available in Hindi and English
+            today — with more Indian languages coming soon, so devotion is never lost in translation.
           </p>
         </section>
 

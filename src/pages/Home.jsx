@@ -35,7 +35,7 @@ export default function Home() {
     <div className="min-h-screen bg-white dark:bg-gray-950 night-glow">
       <Helmet>
         <title>Devotional App | Spiritual Chants & Mantras</title>
-        <meta name="description" content="Explore devotional content in multiple languages." />
+        <meta name="description" content="Explore devotional content in Hindi and English." />
       </Helmet>
 
       {/* Hero Slider */}
@@ -236,8 +236,8 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
             <div className="text-5xl mb-4">🌍</div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">8+ Languages</h3>
-            <p className="text-gray-600 dark:text-gray-400">Hindi, English, Tamil, Telugu, Bengali, Marathi, Punjabi & more</p>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">Hindi &amp; English</h3>
+            <p className="text-gray-600 dark:text-gray-400">Read every Chalisa, Mantra &amp; Aarti in Hindi and English — more Indian languages coming soon</p>
           </div>
 
           <div className="text-center">
@@ -300,12 +300,27 @@ export default function Home() {
       {/* Languages Info */}
       <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">Available in 8+ Languages</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2 text-center">Available in Hindi &amp; English</h2>
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-8">More Indian languages coming soon 🌱</p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {["हिंदी", "English", "தமிழ்", "తెలుగు", "বাংলা", "मराठी", "ਪੰਜਾਬੀ", "மேலும்"].map((lang, i) => (
-              <div key={i} className="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+          {/* Available now */}
+          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-10">
+            {["हिंदी · Hindi", "English"].map((lang) => (
+              <div key={lang} className="relative bg-white dark:bg-gray-700 rounded-xl p-4 text-center ring-2 ring-orange-400 shadow-sm">
+                <span className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[10px] font-bold text-white" aria-hidden="true">✓</span>
                 <p className="font-semibold text-gray-800 dark:text-white">{lang}</p>
+                <p className="text-xs font-medium text-green-600 dark:text-green-400 mt-1">Available now</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Coming soon */}
+          <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4">Coming soon</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {["தமிழ் · Tamil", "తెలుగు · Telugu", "বাংলা · Bengali", "मराठी · Marathi", "ਪੰਜਾਬੀ · Punjabi", "ગુજરાતી · Gujarati"].map((lang) => (
+              <div key={lang} className="rounded-xl border border-dashed border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-800/40 p-4 text-center">
+                <p className="font-medium text-gray-500 dark:text-gray-400">{lang}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Coming soon</p>
               </div>
             ))}
           </div>

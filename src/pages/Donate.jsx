@@ -34,7 +34,7 @@ export default function Donate() {
 
   const supportReasons = [
     { icon: "🌐", title: "Free Access", text: "All content stays free for everyone, regardless of financial situation." },
-    { icon: "📱", title: "Multi-Language Support", text: "Maintaining content in 8+ languages takes continuous effort and resources." },
+    { icon: "📱", title: "Multi-Language Support", text: "We're growing from Hindi and English to more Indian languages — each one takes real effort and resources." },
     { icon: "⚡", title: "Fast & Reliable", text: "Your support keeps the experience fast, reliable, and completely ad-free." },
     { icon: "✨", title: "Continuous Improvement", text: "We keep adding new content and features to enrich your experience." },
   ];
