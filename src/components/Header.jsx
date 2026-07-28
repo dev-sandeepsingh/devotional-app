@@ -21,13 +21,17 @@ const Header = memo(function Header({ onMenuToggle }) {
           <Link
             to="/"
             aria-label="TheChalisa.com — Home"
-            className="flex items-center flex-shrink-0 rounded-lg px-1 hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600"
+            className="flex items-center gap-2 flex-shrink-0 rounded-lg px-1 hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600"
           >
+            {/* Emblem sits on the header's own gradient — logo.png is transparent. */}
             <img
               src="/assets/logo.png"
-              alt="TheChalisa.com"
+              alt=""
               className="h-9 sm:h-10 lg:h-11 w-auto"
             />
+            <span className="text-base sm:text-lg lg:text-xl font-bold text-white leading-none tracking-tight whitespace-nowrap">
+              TheChalisa<span className="font-medium text-white/75">.com</span>
+            </span>
           </Link>
           
           <nav className="hidden md:flex gap-8 items-center" aria-label="Main navigation">
