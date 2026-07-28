@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen, onClose, collapsed, onToggleCollapse }
       </div>
 
       <div className={`p-4 border-t border-gray-200 dark:border-gray-700 ${collapsed ? "lg:hidden" : ""}`}>
-        <p className="text-xs text-gray-500 dark:text-gray-500 text-center">© 2026 Devotional</p>
+        <p className="text-xs font-semibold text-[#4a0f1c] dark:text-[#c65f75] text-center">© 2026 Devotional</p>
       </div>
     </aside>
   );

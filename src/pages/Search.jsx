@@ -18,7 +18,7 @@ export default function Search() {
 
       <div className="max-w-4xl mx-auto">
         <Breadcrumbs crumbs={[{ label: "Search" }]} className="mb-4" />
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-8">🔎 Search</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-8">🔎 Search</h1>
 
         <div className="relative mb-8">
           <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none" aria-hidden="true">

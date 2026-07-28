@@ -2,11 +2,14 @@
  *
  * Strategy:
  *  - Hashed build assets (/assets/*.js, *.css) and images: cache-first —
- *    they never change under the same URL, and the JS bundle contains all
- *    devotional content, so one visit makes every chalisa readable offline.
+ *    they never change under the same URL. Item content is code-split into
+ *    per-item chunks, so each chalisa/mantra becomes readable offline once it
+ *    has been opened (its chunk is cached on first fetch).
  *  - Navigations (SPA routes): network-first with the cached index.html as
  *    the offline fallback.
- *  - API calls (/api/*) are never cached — always live data or a real error.
+ *  - API calls (/api/*) and cross-origin requests (e.g. web fonts) are never
+ *    cached — always live data or a real error; fonts fall back to the system
+ *    stack offline.
  */
 const CACHE = "devotional-v1";
 const OFFLINE_URL = "/";

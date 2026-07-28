@@ -18,8 +18,16 @@ const Header = memo(function Header({ onMenuToggle }) {
             </svg>
           </button>
           
-          <Link to="/" className="text-lg sm:text-xl lg:text-2xl font-bold text-white hover:text-orange-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600 rounded px-1 sm:px-2 min-w-0 truncate whitespace-nowrap">
-            🙏 Devotional
+          <Link
+            to="/"
+            aria-label="TheChalisa.com — Home"
+            className="flex items-center flex-shrink-0 rounded-lg px-1 hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-600"
+          >
+            <img
+              src="/assets/logo.png"
+              alt="TheChalisa.com"
+              className="h-9 sm:h-10 lg:h-11 w-auto"
+            />
           </Link>
           
           <nav className="hidden md:flex gap-8 items-center" aria-label="Main navigation">

@@ -192,7 +192,7 @@ export default function Home() {
       <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Featured Content</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">Featured Content</h2>
             <Link to="/chalisa" className="text-orange-500 hover:text-orange-600 font-semibold">
               View All →
             </Link>
@@ -231,7 +231,7 @@ export default function Home() {
       {/* Why Us Section */}
       <section className="w-full py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
@@ -282,7 +282,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="w-full py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-700 dark:to-red-800 text-white rounded-2xl p-12 text-center dark:ring-1 dark:ring-orange-400/30">
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-700 dark:to-red-800 text-white rounded-2xl p-8 md:p-12 text-center dark:ring-1 dark:ring-orange-400/30">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Your Spiritual Journey</h2>
             <p className="text-lg opacity-90 mb-8">
               Thousands of devotees are already exploring their spirituality with us.
@@ -300,7 +300,7 @@ export default function Home() {
       {/* Languages Info */}
       <section className="w-full bg-gray-50 dark:bg-gray-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">Available in 8+ Languages</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">Available in 8+ Languages</h2>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {["हिंदी", "English", "தமிழ்", "తెలుగు", "বাংলা", "मराठी", "ਪੰਜਾਬੀ", "மேலும்"].map((lang, i) => (

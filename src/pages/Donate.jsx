@@ -1,11 +1,35 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 export default function Donate() {
+  // Self-contained UPI QR ("scanner") image (QR + bank + UPI ID baked in).
+  // UPI_ID is also offered as functional copy-to-clipboard for anyone who can't scan.
+  const QR_SRC = "/assets/banners/scanner.jpeg";
+  const UPI_ID = "mandhirbath62@okicici";
+  const [imgOk, setImgOk] = useState(true);
+  const [copied, setCopied] = useState(false);
+  const copyUpi = async () => {
+    try {
+      await navigator.clipboard.writeText(UPI_ID);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // clipboard unavailable — ignore
+    }
+  };
+
+  const supportReasons = [
+    { icon: "🌐", title: "Free Access", text: "All content stays free for everyone, regardless of financial situation." },
+    { icon: "📱", title: "Multi-Language Support", text: "Maintaining content in 8+ languages takes continuous effort and resources." },
+    { icon: "⚡", title: "Fast & Reliable", text: "Your support keeps the experience fast, reliable, and completely ad-free." },
+    { icon: "✨", title: "Continuous Improvement", text: "We keep adding new content and features to enrich your experience." },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <Helmet>
         <title>Donate | Support Devotional Site</title>
-        <meta name="description" content="Support our devotional site with donations via UPI or Razorpay." />
+        <meta name="description" content="Support our devotional site — scan the UPI QR code to donate any amount." />
       </Helmet>
 
       {/* Header Section */}
@@ -21,35 +45,21 @@ export default function Donate() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="text-3xl font-bold mb-6 dark:text-white">Why Your Support Matters</h2>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-4">
-                <span className="text-2xl">🌐</span>
-                <div>
-                  <h3 className="font-bold dark:text-white">Free Access</h3>
-                  <p className="text-gray-600 dark:text-gray-400">We keep all content free for everyone, regardless of their financial situation</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="text-2xl">📱</span>
-                <div>
-                  <h3 className="font-bold dark:text-white">Multi-Language Support</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Maintaining content in 8+ languages requires continuous effort and resources</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="text-2xl">⚡</span>
-                <div>
-                  <h3 className="font-bold dark:text-white">Fast & Reliable</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Your support helps us provide fast, reliable, and ad-free experience</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="text-2xl">✨</span>
-                <div>
-                  <h3 className="font-bold dark:text-white">Continuous Improvement</h3>
-                  <p className="text-gray-600 dark:text-gray-400">We're always adding new content and features to enhance your experience</p>
-                </div>
-              </li>
+            <ul className="space-y-3">
+              {supportReasons.map((r) => (
+                <li
+                  key={r.title}
+                  className="flex items-start gap-4 rounded-xl bg-white dark:bg-gray-800/60 ring-1 ring-gray-100 dark:ring-gray-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-4"
+                >
+                  <span className="flex-shrink-0 w-11 h-11 rounded-full bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-2xl" aria-hidden="true">
+                    {r.icon}
+                  </span>
+                  <div>
+                    <h3 className="font-bold dark:text-white">{r.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{r.text}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -79,34 +89,93 @@ export default function Donate() {
           </div>
         </div>
 
-        {/* Donation Methods */}
+        {/* Donation — Scan to Pay */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">Choose Your Payment Method</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <button
-              onClick={() => window.open("upi://pay?pa=yourupi@bank&pn=DevotionalSite&tr=DevotionalDonation")}
-              className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 text-center hover:-translate-y-1"
-            >
-              <div className="text-5xl mb-4">📱</div>
-              <h3 className="text-2xl font-bold mb-2 dark:text-white">UPI Payment</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">Quick and secure payment via UPI</p>
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
-                Pay via UPI
-              </div>
-            </button>
+          <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-700 shadow-lg p-6 sm:p-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center dark:text-white">Scan &amp; Donate</h2>
+            <p className="text-center text-gray-600 dark:text-gray-300 mt-2 mb-8 sm:mb-10">
+              Support us in seconds with any UPI app — give any amount you wish 🙏
+            </p>
 
-            <button
-              onClick={() => window.open("https://razorpay.com/payment-link/62weststudio")}
-              className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 text-center hover:-translate-y-1"
-            >
-              <div className="text-5xl mb-4">💳</div>
-              <h3 className="text-2xl font-bold mb-2 dark:text-white">Card & Razorpay</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">Accept all major payment methods</p>
-              <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white py-3 rounded-lg font-semibold group-hover:opacity-90 transition">
-                Pay via Razorpay
+            <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+              {/* Scanner — the hero */}
+              <div className="w-full max-w-[340px] mx-auto">
+                <div className="relative rounded-3xl bg-gradient-to-br from-orange-400 to-red-500 p-1.5 shadow-2xl">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 rounded-full bg-white dark:bg-gray-900 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400 shadow ring-1 ring-orange-200 dark:ring-orange-500/40">
+                    Scan &amp; Pay
+                  </span>
+                  <div className="overflow-hidden rounded-[1.35rem] bg-white">
+                    {imgOk ? (
+                      <img
+                        src={QR_SRC}
+                        alt="Scan this UPI QR code to donate"
+                        className="block w-full h-auto"
+                        onError={() => setImgOk(false)}
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center gap-2 py-28 px-4 text-center">
+                        <span className="text-4xl">📷</span>
+                        <p className="text-xs text-gray-500">
+                          Add your UPI QR image at
+                          <br />
+                          <code className="text-[11px]">public/assets/banners/scanner.jpeg</code>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-sm font-medium text-gray-600 dark:text-gray-300">
+                  <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9V7a2 2 0 012-2h2M17 5h2a2 2 0 012 2v2M21 15v2a2 2 0 01-2 2h-2M7 19H5a2 2 0 01-2-2v-2" /></svg>
+                  Point your UPI app’s camera here
+                </p>
               </div>
-            </button>
+
+              {/* How to donate + copyable UPI ID */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 dark:text-white">How to donate</h3>
+                <ol className="space-y-4">
+                  {[
+                    "Open any UPI app — GPay, PhonePe, Paytm or BHIM",
+                    "Tap “Scan QR” and point it at the code",
+                    "Enter any amount and confirm the payment",
+                  ].map((step, i) => (
+                    <li key={step} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <span className="text-gray-700 dark:text-gray-300 pt-0.5">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+
+                {/* Can't scan? Copy the UPI ID */}
+                <div className="mt-8">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Can’t scan? Pay to this UPI ID
+                  </p>
+                  <div className="flex items-center justify-between gap-3 rounded-xl bg-white dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-600 px-4 py-3">
+                    <span className="font-mono text-sm sm:text-base text-gray-800 dark:text-gray-100 truncate">{UPI_ID}</span>
+                    <button
+                      onClick={copyUpi}
+                      aria-label="Copy UPI ID"
+                      className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-3 py-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    >
+                      {copied ? (
+                        <>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                          Copied
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                          Copy
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -55,20 +55,22 @@ export default function DetailPage({ category }) {
 
   // Full item content (description / meaning / faq) is loaded lazily from its
   // own async chunk; metadata (title / intro) is available synchronously so the
-  // page chrome renders immediately while the body loads.
-  const [item, setItem] = useState(null);
+  // page chrome renders immediately while the body loads. The loaded content is
+  // tagged with the item it belongs to, so a mismatch (first load or mid-switch
+  // to another item) reads as "still loading" — no synchronous reset needed.
   const meta = getItemMeta(category, slug);
+  const itemKey = `${category}/${slug}`;
+  const [loaded, setLoaded] = useState(null);
 
-  // Reset scroll on every item change, load the item's full content, and count
+  // On every item change, reset scroll, load the item's full content, and count
   // a real item toward the daily reading streak once it resolves.
   useEffect(() => {
     window.scrollTo(0, 0);
     let cancelled = false;
-    setItem(null);
     getItem(category, slug).then((res) => {
-      if (cancelled) return;
-      setItem(res);
-      if (res) recordReading();
+      if (cancelled || !res) return;
+      setLoaded({ key: `${category}/${slug}`, item: res });
+      recordReading();
     });
     return () => {
       cancelled = true;
@@ -77,6 +79,8 @@ export default function DetailPage({ category }) {
 
   // Unknown item → back to the category list.
   if (!meta) return <Navigate to={`/${CATEGORIES[category]?.route || ""}`} replace />;
+
+  const item = loaded?.key === itemKey ? loaded.item : null;
 
   // Linear prev/next through the category's list order.
   const items = getItems(category);

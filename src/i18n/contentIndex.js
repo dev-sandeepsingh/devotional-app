@@ -1083,6 +1083,54 @@ export default {
       "introHi": "देवी सहस्रनाम देवी माता के 1000 नामों की एक पवित्र रचना है जो उनकी अनंत शक्ति और ब्रह्मांडीय प्रकटीकरण का जश्न मनाती है।",
       "introEn": "A sacred composition of 1000 names of the Divine Mother, celebrating her infinite power and cosmic manifestations."
     },
+    "durga-sahasranamam": {
+      "titleHi": "दुर्गा सहस्रनाम",
+      "titleEn": "Durga Sahasranamam",
+      "introHi": "दुर्गा सहस्रनाम माता दुर्गा के 1000 पवित्र नामों का स्तोत्र है। इसका श्रद्धापूर्वक पाठ करने से साहस, सुरक्षा और देवी दुर्गा की कृपा प्राप्त होती है।",
+      "introEn": "Durga Sahasranamam is the sacred hymn of the 1000 names of Goddess Durga. Chanting it with devotion brings courage, protection, and divine grace."
+    },
+    "ganesha-sahasranamam": {
+      "titleHi": "गणेश सहस्रनाम",
+      "titleEn": "Ganesha Sahasranamam",
+      "introHi": "गणेश सहस्रनाम भगवान गणेश के 1000 पवित्र नामों का स्तोत्र है। इसका नियमित पाठ करने से विघ्न दूर होते हैं और सुख-समृद्धि की प्राप्ति होती है।",
+      "introEn": "Ganesha Sahasranamam is the sacred collection of the 1000 names of Lord Ganesha. Reciting it helps remove obstacles and invites prosperity and wisdom."
+    },
+    "gayatri-sahasranamam": {
+      "titleHi": "गायत्री सहस्रनाम",
+      "titleEn": "Gayatri Sahasranamam",
+      "introHi": "गायत्री सहस्रनाम माता गायत्री के 1000 पवित्र नामों का स्तोत्र है। इसका पाठ ज्ञान, बुद्धि, आध्यात्मिक उन्नति और देवी गायत्री की कृपा प्राप्त करने के लिए किया जाता है।",
+      "introEn": "Gayatri Sahasranamam is the sacred hymn of the 1000 names of Goddess Gayatri. Reciting it brings wisdom, spiritual growth, and divine blessings."
+    },
+    "hanuman-sahasranamam": {
+      "titleHi": "हनुमान सहस्रनाम",
+      "titleEn": "Hanuman Sahasranamam",
+      "introHi": "हनुमान सहस्रनाम श्री हनुमान जी के 1000 दिव्य नामों का स्तोत्र है। इसका पाठ शक्ति, साहस, भय से मुक्ति और बजरंगबली की कृपा प्राप्त करने के लिए किया जाता है।",
+      "introEn": "Hanuman Sahasranamam is the sacred hymn of the 1000 names of Lord Hanuman. Devotees recite it for strength, courage, protection, and divine blessings."
+    },
+    "krishna-sahasranamam": {
+      "titleHi": "कृष्ण सहस्रनाम",
+      "titleEn": "Krishna Sahasranamam",
+      "introHi": "कृष्ण सहस्रनाम भगवान श्रीकृष्ण के 1000 पवित्र नामों का स्तोत्र है। इसका पाठ भक्ति, प्रेम, शांति और भगवान श्रीकृष्ण की कृपा प्राप्त करने के लिए किया जाता है।",
+      "introEn": "Krishna Sahasranamam is the sacred hymn of the 1000 names of Lord Krishna. Chanting it deepens devotion, inner peace, and divine love."
+    },
+    "lakshmi-sahasranamam": {
+      "titleHi": "लक्ष्मी सहस्रनाम",
+      "titleEn": "Lakshmi Sahasranamam",
+      "introHi": "लक्ष्मी सहस्रनाम माता महालक्ष्मी के 1000 दिव्य नामों का स्तोत्र है। इसका पाठ धन, समृद्धि, सौभाग्य और देवी लक्ष्मी की कृपा प्राप्त करने के लिए किया जाता है।",
+      "introEn": "Lakshmi Sahasranamam is the sacred hymn of the 1000 names of Goddess Lakshmi. Devotees chant it to seek wealth, prosperity, good fortune, and divine blessings."
+    },
+    "narasimha-sahasranamam": {
+      "titleHi": "नृसिंह सहस्रनाम",
+      "titleEn": "Narasimha Sahasranamam",
+      "introHi": "नृसिंह सहस्रनाम भगवान नृसिंह के 1000 दिव्य नामों का स्तोत्र है। इसका पाठ भय, नकारात्मकता और बाधाओं से रक्षा के लिए अत्यंत शुभ माना जाता है।",
+      "introEn": "Narasimha Sahasranamam is the sacred hymn of the 1000 names of Lord Narasimha. Devotees chant it for protection, courage, and freedom from fear and negativity."
+    },
+    "shiva-sahasranamam": {
+      "titleHi": "शिव सहस्रनाम",
+      "titleEn": "Shiva Sahasranamam",
+      "introHi": "शिव सहस्रनाम भगवान शिव के 1000 दिव्य नामों का पवित्र स्तोत्र है। इसका श्रद्धापूर्वक पाठ करने से मन को शांति, आध्यात्मिक शक्ति और भगवान शिव की कृपा प्राप्त होती है।",
+      "introEn": "Shiva Sahasranamam is the sacred hymn of the 1000 divine names of Lord Shiva. Chanting it with devotion brings peace, spiritual strength, and the blessings of Mahadev."
+    },
     "vishnu-sahasranama": {
       "titleHi": "विष्णु सहस्रनाम",
       "titleEn": "Vishnu Sahasranama",

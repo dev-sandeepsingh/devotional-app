@@ -5,13 +5,25 @@
    Without this, dark: utilities were inert against the class and cards rendered light. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Custom global styles */
+/* Custom global styles.
+   Font stack: Inter renders the Latin UI text; Devanagari glyphs (absent from
+   Inter) fall through per-glyph to Noto Sans Devanagari for crisp Hindi. Both
+   load from index.html with display=swap, and the system fonts after them keep
+   text readable before the webfonts arrive and when offline. Font smoothing +
+   optimizeLegibility sharpen rendering on high-DPI screens. */
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Inter", "Noto Sans Devanagari", system-ui, -apple-system,
+    "Segoe UI", "Nirmala UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Cap the largest phones' text auto-inflation so line lengths stay controlled. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* ── Dark mode “temple night” palette ────────────────────────────────────────
